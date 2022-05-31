@@ -22,7 +22,7 @@
 }
 body{
 background: rgb(13,83,84);
-		background: linear-gradient(132deg, rgba(13,83,84,1) 0%, rgba(36,85,167,1) 29%, rgba(20,20,163,1) 95%);
+		background-image:url("https://quiasma.com.mx/wp-content/uploads/2017/03/fondo-blanco.jpg");
 		background-repeat: no-repeat;
 		background-attachment: fixed;
 }
