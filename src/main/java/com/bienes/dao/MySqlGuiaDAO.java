@@ -25,7 +25,7 @@ public class MySqlGuiaDAO implements GuiaDAO {
 			//1.
 			cn=MySqlConexion.getConectar();
 			//2.
-			String sql="SELECT * FROM gestionbienes.`grr-ordendecompra`";
+			String sql="select * from gestionbienes.`grr-ordendecompra`";
 			//3.
 			pstm=cn.prepareStatement(sql);
 			//4.parámetros
