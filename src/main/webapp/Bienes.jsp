@@ -23,9 +23,10 @@
 <style type="text/css">
 	.modal-header{
 		color:#fff;
-		background: #428bca;
+		background: black;
 		display: flex;
   		justify-content: center;  		
+  		
 	}
 	.help-block {
 	  		color: red;
@@ -50,7 +51,7 @@
 			</c:if>
 
 		<!-- Button trigger modal -->
-		<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+		<button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
 		  Registrar
 		</button>
 				
@@ -97,8 +98,8 @@
 				    <input type="text" class="form-control" name="codigocompra" id="idCompra">
 				  </div>			  				  				  
 				  <div class="modal-footer">
-				  	<button type="submit" class="btn btn-primary">Grabar</button>
-			        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+				  	<button type="submit" class="btn btn-dark">Grabar</button>
+			        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
 			      </div>				  
 				</form>		       		        		        
 		      </div>
