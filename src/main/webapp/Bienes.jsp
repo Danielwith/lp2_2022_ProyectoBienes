@@ -220,7 +220,7 @@
 </script>
 <script type="text/javascript">    
     $(document).ready(function(){     
-        $('#idRegistrar').bootstrapValidator({AAAAAAAERROR      
+        $('#idRegistrar').bootstrapValidator({
         	 fields:{
         		 	descripcion:{
         		 		validators:{
