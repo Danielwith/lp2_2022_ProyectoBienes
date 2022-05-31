@@ -71,7 +71,7 @@ public class MySqlGuiaDAO implements GuiaDAO {
 			//1
 			cn=MySqlConexion.getConectar();
 			//2
-			String sql="insert into grr-ordendecompra values(null,?,?,?,?,?)";
+			String sql="insert into gestionbienes.`grr-ordendecompra` values(null,?,?,?,?,?)";
 			//3
 			pstm=cn.prepareStatement(sql);
 			//4
@@ -105,7 +105,7 @@ public class MySqlGuiaDAO implements GuiaDAO {
 			//1
 			cn=MySqlConexion.getConectar();
 			//2
-			String sql="update grr-ordendecompra set proveedor=?, fecha_compra=?, descripcion=?, cantidad=?, precio=? "
+			String sql="update gestionbienes.`grr-ordendecompra` set proveedor=?, fecha_compra=?, descripcion=?, cantidad=?, precio=? "
 					+ "where codigo=?";
 			//3
 			pstm=cn.prepareStatement(sql);
@@ -140,7 +140,7 @@ public class MySqlGuiaDAO implements GuiaDAO {
 			//1
 			cn=MySqlConexion.getConectar();
 			//2
-			String sql="delete from grr-ordendecompra where codigo=?";
+			String sql="delete from gestionbienes.`grr-ordendecompra` where codigo=?";
 			//3
 			pstm=cn.prepareStatement(sql);
 			//4
@@ -171,7 +171,7 @@ public class MySqlGuiaDAO implements GuiaDAO {
 			//1.
 			cn=MySqlConexion.getConectar();
 			//2.
-			String sql="select * from grr-ordendecompra where codigo=? ";
+			String sql="select * from gestionbienes.`grr-ordendecompra` where codigo=? ";
 			//3.
 			pstm=cn.prepareStatement(sql);
 			//4.parámetros
