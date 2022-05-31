@@ -14,7 +14,7 @@ public abstract class DAOFactory {
     // Ejemplo:
     //public abstract ArticuloDAO getArticuloDAO();
     // registramos nuestros daos
-    public abstract BienesDAO getDocenteDAO();
+    public abstract BienesDAO getBienesDAO();
 
    
     public static DAOFactory getDAOFactory(int whichFactory){

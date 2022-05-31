@@ -205,17 +205,17 @@
 			//console.log(response);
 			//asignar a los controles las claves del parámetro response
 			$("#idCodigo").val(cod);
-			$("#idDescripcion").val(response.descripcion);
-			$("#idCantidad").val(response.cantidad);
-			$("#idNombreproveedor").val(response.nombreproveedor);
-			$("#idFechallegada").val(response.fechallegada);
-			$("#idNombreoperador").val(response.nombreoperador);
+			$("#idDescripcion").val(response.descrip_bien);
+			$("#idCantidad").val(response.cantidad_bien);
+			$("#idNombreproveedor").val(response.nom_provee);
+			$("#idFechallegada").val(response.fecha_llegada);
+			$("#idNombreoperador").val(response.nom_operador);
 			$("#idProveedor").val(response.idproveedor);
-			$("#idCompra").val(response.codigocompra);
-			
-		})			
-	})							
-	}
+			$("#idCompra").val(response.codigoOrdendeCompra);
+					
+		})	
+		
+	})				
 		
 </script>
 <script type="text/javascript">    

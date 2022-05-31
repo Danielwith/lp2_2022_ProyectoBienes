@@ -11,7 +11,7 @@ public class BienesServices {
 	//PASO 1: definir origen de datos, invocar al método getDAOFactory y enviar como parámetro un #ro.
 		private DAOFactory fabrica=DAOFactory.getDAOFactory(1);
 		//PASO 2: definir dao a utilizar
-		private BienesDAO objBienes=fabrica.getDocenteDAO();
+		private BienesDAO objBienes=fabrica.getBienesDAO();
 		
 		//métodos de servicio
 		public int registrar(Bienes bean) {

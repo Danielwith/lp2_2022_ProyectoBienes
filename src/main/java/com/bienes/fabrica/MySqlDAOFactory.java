@@ -7,7 +7,7 @@ import com.bienes.interfaces.BienesDAO;
 public class MySqlDAOFactory extends DAOFactory {
 
 	@Override
-	public BienesDAO getDocenteDAO() {
+	public BienesDAO getBienesDAO() {
 		// TODO Auto-generated method stub
 		return new MySqlBienesDAO();
 	}
