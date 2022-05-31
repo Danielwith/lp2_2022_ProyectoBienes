@@ -1,6 +1,7 @@
 package com.bienes.fabrica;
 
 import com.bienes.interfaces.BienesDAO;
+import com.bienes.interfaces.GuiaDAO;
 
 
 public abstract class DAOFactory {
@@ -15,7 +16,7 @@ public abstract class DAOFactory {
     //public abstract ArticuloDAO getArticuloDAO();
     // registramos nuestros daos
     public abstract BienesDAO getBienesDAO();
-
+    public abstract GuiaDAO getGuiaDAO();
    
     public static DAOFactory getDAOFactory(int whichFactory){
         switch(whichFactory){
