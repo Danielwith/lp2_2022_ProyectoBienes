@@ -99,7 +99,7 @@ body.dark .home .text{
   </nav>
 
   <section class="home">
-    <div class="text">Bienvenido, {item.nombre}</div>
+    <div class="text">Hola, Bienvenido</div>
 
   </section>
 
