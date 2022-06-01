@@ -44,7 +44,7 @@
 <body>
 	<jsp:include page="partialMenu.jsp"></jsp:include>
 	<!-- Añadir class .home  -->
-	<div class="container home">
+	<div class="container">
 		
 		<h1 class="text-center mt-5">Listado de Bienes</h1>
 			<c:if test="${requestScope.MENSAJE!=null}">

@@ -43,7 +43,7 @@
 </head>
 <body>
 	<jsp:include page="partialMenu.jsp"></jsp:include>
-	<div class="container home">
+	<div class="container">
 		<h1 class="text-center mt-5">Listado de Guia</h1>
 			<c:if test="${requestScope.MENSAJE!=null}">
 				<div class="alert alert-warning alert-dismissible fade show" role="alert">
