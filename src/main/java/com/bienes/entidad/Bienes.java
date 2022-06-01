@@ -9,8 +9,6 @@ public class Bienes {
 		public int cantidad_bien;
 		public String nom_provee;
 		public Date fecha_llegada;
-		public String nom_operador;
-		public int idproveedor;
 		public int codigoOrdendeCompra;
 		
 		public int getCodigo_bien() {
@@ -43,18 +41,7 @@ public class Bienes {
 		public void setFecha_llegada(Date fecha_llegada) {
 			this.fecha_llegada = fecha_llegada;
 		}
-		public String getNom_operador() {
-			return nom_operador;
-		}
-		public void setNom_operador(String nom_operador) {
-			this.nom_operador = nom_operador;
-		}
-		public int getIdproveedor() {
-			return idproveedor;
-		}
-		public void setIdproveedor(int idproveedor) {
-			this.idproveedor = idproveedor;
-		}
+
 		public int getCodigoOrdendeCompra() {
 			return codigoOrdendeCompra;
 		}

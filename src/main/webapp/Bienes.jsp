@@ -86,14 +86,6 @@
 				    <input type="text" class="form-control" name="fechallegada" id="idFechallegada">
 				  </div>
 				  <div class="form-group">
-				    <label for="exampleInputPassword1" class="form-label">Nombre Operador</label>
-				    <input type="text" class="form-control" name="nombreoperador" id="idNombreoperador">
-				  </div>	
-				  <div class="form-group">
-				    <label for="exampleInputPassword1" class="form-label">Id Proveedor</label>
-				    <input type="text" class="form-control" name="idproveedor" id="idProveedor">
-				  </div>
-				  <div class="form-group">
 				    <label for="exampleInputPassword1" class="form-label">Codigo Compra</label>
 				    <input type="text" class="form-control" name="codigocompra" id="idCompra">
 				  </div>			  				  				  
@@ -136,8 +128,6 @@
 		                <th>CANTIDAD</th>
 		                <th>PROVEEDOR</th>
 		                <th>FECHA LLEGADA</th>
-		                <th>NOMBRE OPERADOR</th>
-		                <th>ID PROVEEDOR</th>
 		                <th>CODIGO COMPRA</th>
 		                <th></th>
 		                <th></th>
@@ -151,8 +141,6 @@
 				                <td>${row.cantidad_bien}</td>
 				                <td>${row.nom_provee}</td>
 				                <td>${row.fecha_llegada}</td>
-				                <td>${row.nom_operador}</td>
-				                <td>${row.idproveedor}</td>
 				                <td>${row.codigoOrdendeCompra}</td>
 				                <td><button type="button" class="btn btn-success" 
 				                			data-bs-toggle="modal" data-bs-target="#staticBackdrop">Editar</button></td>
@@ -200,16 +188,14 @@
 	//aisgnar evento click a todos los botones con nombre de clase "btn-success"
 	$(document).on("click",".btn-success",function(){
 		//variables
-		let cod,descrip,cant,nomprovee,fechallegada,nomope,idprovee,codigocompra;
+		let cod,descrip,cant,nomprovee,fechallegada,codigocompra;
 		//obtener los datos de todas las columnas según el botón editar que se a pulsado
 		cod=$(this).parents("tr").find("td")[0].innerHTML;
 		descrip=$(this).parents("tr").find("td")[1].innerHTML;
 		cant=$(this).parents("tr").find("td")[2].innerHTML;
 		nomprovee=$(this).parents("tr").find("td")[3].innerHTML;
 		fechallegada=$(this).parents("tr").find("td")[4].innerHTML;
-		nomope=$(this).parents("tr").find("td")[5].innerHTML;
-		idprovee=$(this).parents("tr").find("td")[6].innerHTML;
-		codigocompra=$(this).parents("tr").find("td")[7].innerHTML;
+		codigocompra=$(this).parents("tr").find("td")[5].innerHTML;
 		
 		
 		$.get("ServletBienesJSON?codigo="+cod,function(response){
@@ -220,8 +206,6 @@
 			$("#idCantidad").val(response.cantidad_bien);
 			$("#idNombreproveedor").val(response.nom_provee);
 			$("#idFechallegada").val(response.fecha_llegada);
-			$("#idNombreoperador").val(response.nom_operador);
-			$("#idProveedor").val(response.idproveedor);
 			$("#idCompra").val(response.codigoOrdendeCompra);
 					
 		})	
@@ -278,28 +262,6 @@
         		 			
         		 		}
         		 	},
-        		 	nombreoperador:{
-        		 		validators:{
-        		 			notEmpty:{
-        		 				message:'Campo operador es obligatorio'
-        		 			},
-        		 			regexp:{
-        		 				regexp:/^[a-zA-Z\ñ\Ñ\s\á\é\í\ó\ú\Á\É\Í\Ó\Ú]{4,20}$/,
-        		 				message:'Campo operador solo letras MIN:4 - MAX:20'
-        		 			}
-        		 		}
-        		 	},
-        		 	idproveedor:{
-        		 		validators:{
-        		 			notEmpty:{
-        		 				message:'Campo idproveedor es obligatorio'
-        		 			},
-        		 			regexp:{
-        		 				regexp:/^\d+$/,
-        		 				message:'Campo idproveedor debe ser numerico'
-        		 			}
-        		 		}
-        		 	},
         		 	codigocompra:{
         		 		validators:{
         		 			notEmpty:{
@@ -314,6 +276,7 @@
         	 }
         });   			
     });    
+
 </script> 
 </body>
 </html>
