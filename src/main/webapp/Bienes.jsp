@@ -94,7 +94,7 @@
 				    <input type="text" class="form-control" name="codigocompra" id="idCompra">
 				  </div>			  				  				  
 				  <div class="modal-footer">
-				  	<button type="submit" class="btn btn-dark">Grabar</button>
+				  	<button type="submit" class="btn btn-purple">Grabar</button>
 			        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
 			      </div>				  
 				</form>		       		        		        

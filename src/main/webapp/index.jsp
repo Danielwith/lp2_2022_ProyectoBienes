@@ -43,6 +43,8 @@
     left: 78px;
     height: 100vh;
     width: calc(100% - 78px);
+	background-image:url("https://quiasma.com.mx/wp-content/uploads/2017/03/fondo-blanco.jpg");
+
 }
 body.dark .home .text{
     color: var(--text-color);
