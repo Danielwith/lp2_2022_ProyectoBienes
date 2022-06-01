@@ -75,15 +75,13 @@ public class ServletBienes extends HttpServlet {
 
 	private void registrarBienes(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//variables
-				String cod,descrip,cant,nomprovee,fechallegada,nomope,idprovee,codigocompra;
+				String cod,descrip,cant,nomprovee,fechallegada,codigocompra;
 				//leer controles de la página docente.jsp "trabajar con el atributo name"
 				cod=request.getParameter("codigo");
 				descrip=request.getParameter("descripcion");
 				cant=request.getParameter("cantidad");
 				nomprovee=request.getParameter("nombreproveedor");
 				fechallegada=request.getParameter("fechallegada");
-				nomope=request.getParameter("nombreoperador");
-				idprovee=request.getParameter("idproveedor");
 				codigocompra=request.getParameter("codigocompra");
 				//crear objeto de la clase Docente
 				Bienes bean=new Bienes();
@@ -92,8 +90,6 @@ public class ServletBienes extends HttpServlet {
 				bean.setCantidad_bien(Integer.parseInt(cant));
 				bean.setNom_provee(nomprovee);
 				bean.setFecha_llegada(Date.valueOf(fechallegada));
-				bean.setNom_operador(nomope);
-				bean.setIdproveedor(Integer.parseInt(idprovee));
 				bean.setCodigoOrdendeCompra(Integer.parseInt(codigocompra));
 				//validar variable "cod"
 				if(Integer.parseInt(cod)==0) {

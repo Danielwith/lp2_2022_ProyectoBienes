@@ -7,14 +7,14 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.bienes.entidad.Bienes;
-import com.bienes.interfaces.BienesDAO;
+import com.bienes.entidad.Proveedor;
+import com.bienes.interfaces.ProveedorDAO;
 import com.bienes.utils.MySqlConexion;
 
-public class MySqlBienesDAO implements BienesDAO {
+public class MySqlProveedorDAO implements ProveedorDAO {
 
 	@Override
-	public int save(Bienes bean) {
+	public int savePro(Proveedor bean) {
 		int salida=-1;
 		Connection cn=null;
 		PreparedStatement pstm=null;
@@ -22,15 +22,12 @@ public class MySqlBienesDAO implements BienesDAO {
 			//1
 			cn=MySqlConexion.getConectar();
 			//2
-			String sql="insert into bienes values(null,?,?,?,?,?)";
+			String sql="insert into proveedor values(null,?,?)";
 			//3
 			pstm=cn.prepareStatement(sql);
 			//4
-			pstm.setString(1, bean.getDescrip_bien());
-			pstm.setInt(2, bean.getCantidad_bien());
-			pstm.setString(3, bean.getNom_provee() );
-			pstm.setDate(4, bean.getFecha_llegada());
-			pstm.setInt(5, bean.getCodigoOrdendeCompra());
+			pstm.setString(1, bean.getNom_empresa());
+			pstm.setString(2, bean.getNom_provee());
 			//5
 			salida=pstm.executeUpdate();
 		} catch (SQLException e) {
@@ -46,9 +43,9 @@ public class MySqlBienesDAO implements BienesDAO {
 		}
 		return salida;
 	}
-
+	
 	@Override
-	public int update(Bienes bean) {
+	public int updatePro(Proveedor bean) {
 		int salida=-1;
 		Connection cn=null;
 		PreparedStatement pstm=null;
@@ -56,17 +53,12 @@ public class MySqlBienesDAO implements BienesDAO {
 			//1
 			cn=MySqlConexion.getConectar();
 			//2
-			String sql="update bienes set descrip_bien=?, cantidad_bien=?, nom_provee=?, fecha_llegada=?,"+
-															" codigo_ordencompra=? where codigo_bien=?";
+			String sql="update proveedor set nom_empresa=?, nom_provee=? where id_provee=?";
 			//3
 			pstm=cn.prepareStatement(sql);
 			//4
-			pstm.setString(1, bean.getDescrip_bien());
-			pstm.setInt(2, bean.getCantidad_bien());
-			pstm.setString(3, bean.getNom_provee() );
-			pstm.setDate(4, bean.getFecha_llegada());
-			pstm.setInt(5, bean.getCodigoOrdendeCompra());
-			pstm.setInt(6, bean.getCodigo_bien());
+			pstm.setString(1, bean.getNom_empresa());
+			pstm.setString(2, bean.getNom_provee());
 			//5
 			salida=pstm.executeUpdate();
 		} catch (SQLException e) {
@@ -82,9 +74,9 @@ public class MySqlBienesDAO implements BienesDAO {
 		}
 		return salida;
 	}
-
+	
 	@Override
-	public int delete(int cod) {
+	public int deletePro(int id) {
 		int salida=-1;
 		Connection cn=null;
 		PreparedStatement pstm=null;
@@ -92,11 +84,11 @@ public class MySqlBienesDAO implements BienesDAO {
 			//1
 			cn=MySqlConexion.getConectar();
 			//2
-			String sql="delete from bienes where codigo_bien=?";
+			String sql="delete from proveedor where id_provee=?";
 			//3
 			pstm=cn.prepareStatement(sql);
 			//4
-			pstm.setInt(1, cod);
+			pstm.setInt(1, id);
 			//5
 			salida=pstm.executeUpdate();
 		} catch (SQLException e) {
@@ -112,10 +104,10 @@ public class MySqlBienesDAO implements BienesDAO {
 		}
 		return salida;
 	}
-
+	
 	@Override
-	public Bienes findById(int cod) {
-		Bienes bean=null;
+	public Proveedor findByIdPro(int id) {
+		Proveedor bean=null;
 		Connection cn=null;
 		PreparedStatement pstm=null;
 		ResultSet rs=null;
@@ -123,24 +115,26 @@ public class MySqlBienesDAO implements BienesDAO {
 			//1.
 			cn=MySqlConexion.getConectar();
 			//2.
-			String sql="select * from bienes where codigo_bien=?";
+			String sql="select * from proveedor where id_provee=?";
 			//3.
 			pstm=cn.prepareStatement(sql);
 			//4.parámetros
-			pstm.setInt(1, cod);
+			pstm.setInt(1, id);
 			//5.
 			rs=pstm.executeQuery();
 			//6.validar si existe registro
 			if(rs.next()) {
 				//7
-				bean=new Bienes();
+				bean=new Proveedor();
 				//8
-				bean.setCodigo_bien(rs.getInt(1));
-				bean.setDescrip_bien(rs.getString(2));
-				bean.setCantidad_bien(rs.getInt(3)); 
-				bean.setNom_provee(rs.getString(4));
-				bean.setFecha_llegada(rs.getDate(5));
-				bean.setCodigoOrdendeCompra(rs.getInt(6));
+				/*bean.setIdproveedor(rs.getInt(1));
+				bean.setn
+				bean.setCantidad_bien(rs.getInt(3)); */
+				
+				bean.setId_provee(rs.getInt(1));
+				bean.setNom_empresa(rs.getString(2));
+				bean.setNom_provee(rs.getString(2));
+				
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -156,11 +150,11 @@ public class MySqlBienesDAO implements BienesDAO {
 		}		
 		return bean;
 	}
-
+	
 	@Override
-	public List<Bienes> listAll() {
-		List<Bienes> lista=new ArrayList<Bienes>();
-		Bienes bean=null;
+	public List<Proveedor> listAll() {
+		List<Proveedor> lista=new ArrayList<Proveedor>();
+		Proveedor bean=null;
 		Connection cn=null;
 		PreparedStatement pstm=null;
 		ResultSet rs=null;
@@ -168,7 +162,7 @@ public class MySqlBienesDAO implements BienesDAO {
 			//1.
 			cn=MySqlConexion.getConectar();
 			//2.
-			String sql="select * from bienes";
+			String sql="select * from proveedor";
 			//3.
 			pstm=cn.prepareStatement(sql);
 			//4.parámetros
@@ -178,14 +172,11 @@ public class MySqlBienesDAO implements BienesDAO {
 			//6.
 			while(rs.next()) {
 				//7
-				bean=new Bienes();
+				bean=new Proveedor();
 				//8
-				bean.setCodigo_bien(rs.getInt(1));
-				bean.setDescrip_bien(rs.getString(2));
-				bean.setCantidad_bien(rs.getInt(3)); 
-				bean.setNom_provee(rs.getString(4));
-				bean.setFecha_llegada(rs.getDate(5));
-				bean.setCodigoOrdendeCompra(rs.getInt(6));
+				bean.setId_provee(rs.getInt(1));
+				bean.setNom_empresa(rs.getString(2));
+				bean.setNom_provee(rs.getString(3));
 				
 				//9
 				lista.add(bean);
@@ -205,5 +196,5 @@ public class MySqlBienesDAO implements BienesDAO {
 		
 		return lista;
 	}
-
+	
 }
