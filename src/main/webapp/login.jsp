@@ -1,3 +1,4 @@
+<%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -22,6 +23,13 @@
 </style>
 </head>	
 <body>
+	<c:if test="${requestScope.MENSAJE!=null}">
+				<div class="alert alert-warning alert-dismissible fade show" role="alert">
+				  <strong>MENSAJE : </strong> ${requestScope.MENSAJE} 
+				  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+				</div>
+	</c:if>
+	
 	<div class="container w-75 bg-primary mt-5 rounded shadow">
 		<div class="row align-items-stretch">
 			<div class="col bg d-none d-lg-block col-md-5 col-lg-5 col-xl-6 rounded">
@@ -30,7 +38,7 @@
 			<div class="col bg-white p-5 rounded-end">
 				<h2 class="fw-bold text-center pt-5 mb-5">Bienvenido</h2>
 				<!--  LOGIN -->
-				<form action="url">
+				<form action="ServletLogin?tipo=INICIAR" method="post">
 					<div class="mb-4">
 						<label for="id" class="form-label">ID Usuario</label>
 						<input type="text" class="form-control" name="idusuario" required="required">
@@ -40,7 +48,7 @@
 						<input type="password" class="form-control" name="password" required="required">
 					</div>
 					<div class="d-grid mb-2">
-						<button type="submit" class="btn btn-outline-primary">Iniciar Sesión</button>
+						<button type="submit" class="btn btn-outline-primary" value="login">Iniciar Sesión</button>
 					</div>
 				</form>
 			</div>
