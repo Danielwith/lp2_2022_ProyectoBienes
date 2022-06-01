@@ -2,7 +2,7 @@ package com.bienes.entidad;
 
 public class Menu {
 	private int codigo;
-	private String nombre,url;
+	private String nombre,url,icon;
 	
 	public int getCodigo() {
 		return codigo;
@@ -22,6 +22,10 @@ public class Menu {
 	public void setUrl(String url) {
 		this.url = url;
 	}
-	
-	
+	public String getIcon() {
+		return icon;
+	}
+	public void setIcon(String icon) {
+		this.icon = icon;
+	}
 }

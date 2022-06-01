@@ -168,7 +168,8 @@ public class MySqlBienesDAO implements BienesDAO {
 			//1.
 			cn=MySqlConexion.getConectar();
 			//2.
-			String sql="select * from bienes";
+			/* cambio, cambiar ultimo PROVEEDOR_id_provee  "es test" */
+			String sql="select codigo_bien, descrip_bien,cantidad_bien,nom_provee,fecha_llegada,PROVEEDOR_id_provee from bienes";
 			//3.
 			pstm=cn.prepareStatement(sql);
 			//4.parámetros

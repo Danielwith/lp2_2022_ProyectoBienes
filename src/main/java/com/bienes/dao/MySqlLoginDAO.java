@@ -1,5 +1,6 @@
 package com.bienes.dao;
 
+import java.util.logging.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -23,8 +24,8 @@ public class MySqlLoginDAO implements LoginDAO {
 		try {
 			//1.
 			cn=MySqlConexion.getConectar();
-			//2.MOMENTANEAMENTE USARE tb_proveedor nom_empresa "usuario" nom_provee "clave"
-			String sql="select id_provee,nom_empresa,nom_provee from proveedor where nom_empresa=? and nom_provee=?";
+			//2.
+			String sql="select id_acceso,login_acceso,pass_acceso from acceso where login_acceso=? and pass_acceso=?";
 			//3.
 			pstm=cn.prepareStatement(sql);
 			//4.parámetros
@@ -38,8 +39,8 @@ public class MySqlLoginDAO implements LoginDAO {
 				bean=new Usuario();
 				//8
 				bean.setCodigo(rs.getInt(1));
-				bean.setNombres(rs.getString(2));
-				bean.setApellidos(rs.getString(3));
+				bean.setLogin(rs.getString(2));
+				bean.setClave(rs.getString(3));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -55,9 +56,11 @@ public class MySqlLoginDAO implements LoginDAO {
 		}		
 		return bean;
 	}
-
+	
 	@Override
 	public List<Menu> traerOpciones(int codUsu) {
+
+		Logger logger = Logger.getLogger(MySqlLoginDAO.class.getName());
 		List<Menu> lista=new ArrayList<Menu>();
 		Menu bean=null;
 		Connection cn=null;
@@ -67,12 +70,13 @@ public class MySqlLoginDAO implements LoginDAO {
 			//1.
 			cn=MySqlConexion.getConectar();
 			//2.
-			String sql="select a.cod_men,m.des_men,m.url_men from tb_acceso a join tb_menu m"
-						+ "on a.cod_men=m.cod_men where a.cod_usu=?";
+			String sql="select a.id_acceso,m.descrip_menu,m.url_menu,m.icon_menu from acceso a join menu m on a.id_acceso=m.id_acceso where a.id_acceso=?";
 			//3.
 			pstm=cn.prepareStatement(sql);
 			//4.parámetros
 			pstm.setInt(1, codUsu);
+			//DEPURADOR
+			logger.info(String.valueOf(codUsu));
 			//5.
 			rs=pstm.executeQuery();
 			//6.
@@ -83,6 +87,7 @@ public class MySqlLoginDAO implements LoginDAO {
 				bean.setCodigo(rs.getInt(1));
 				bean.setNombre(rs.getString(2));
 				bean.setUrl(rs.getString(3));
+				bean.setIcon(rs.getString(4));
 				//9
 				lista.add(bean);
 			}
