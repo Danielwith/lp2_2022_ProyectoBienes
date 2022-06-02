@@ -29,7 +29,7 @@
     left: 250px;
     height: 100vh;
     width: calc(100% - 250px);
-    background-image:url("https://mecaluxes.cdnwm.com/blog/img/almacen-transito-leroy-merlin-guadalajara-bricolaje-jardineria.1.16.jpg");
+    background-image:url("https://portal.andina.pe/EDPfotografia3/Thumbnail/2018/07/14/000518171W.jpg");
     transition: var(--tran-05);
 }
 .home .text{
