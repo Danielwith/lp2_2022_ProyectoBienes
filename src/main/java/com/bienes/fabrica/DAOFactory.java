@@ -1,7 +1,7 @@
 package com.bienes.fabrica;
 
 import com.bienes.interfaces.BienesDAO;
-
+import com.bienes.interfaces.InscripcionSUNARPDAO;
 
 public abstract class DAOFactory {
 	// los posibles orígenes de datos
@@ -15,6 +15,7 @@ public abstract class DAOFactory {
     //public abstract ArticuloDAO getArticuloDAO();
     // registramos nuestros daos
     public abstract BienesDAO getBienesDAO();
+    public abstract  InscripcionSUNARPDAO getInscripcionSUNARPDAO();
 
    
     public static DAOFactory getDAOFactory(int whichFactory){
