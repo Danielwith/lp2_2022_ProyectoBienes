@@ -76,16 +76,20 @@ public class ServletProveedor extends HttpServlet {
 	
 	private void registrarProveedor(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//variables
-				String id,nomEmp,nomPro;
+				String id,nomPro,distPro,telfPro,estPro;
 				
 				id=request.getParameter("idpro");
-				nomEmp=request.getParameter("nombreEmpresa");
-				nomPro=request.getParameter("nombreProveedor");		
+				nomPro=request.getParameter("nombreProveedor");
+				distPro=request.getParameter("distritoProveedor");
+				telfPro=request.getParameter("telefonoProveedor");
+				estPro=request.getParameter("estadoProveedor");
 				
 				Proveedor bean=new Proveedor();
 						
-				bean.setNom_empresa(nomEmp);
-				bean.setNom_provee(nomPro);
+				bean.setNom_prove(nomPro);
+				bean.setDist_prove(distPro);
+				bean.setTelf_prove(telfPro);
+				bean.setEstado_prove(estPro);
 				
 				//validar variable "id"
 				if(Integer.parseInt(id)==0) {
@@ -104,7 +108,7 @@ public class ServletProveedor extends HttpServlet {
 				}
 				else {
 					
-					bean.setId_provee(Integer.parseInt(id));
+					bean.setId_prove(Integer.parseInt(id));
 					
 					int salida;
 					salida=servicio1.actualizarPro(bean);

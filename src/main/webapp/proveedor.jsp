@@ -61,14 +61,26 @@
 					    <label for="exampleInputEmail1" class="form-label">ID</label>
 					    <input type="text" class="form-control" name="idpro" id="idProveedor" readonly value="0">
 					  </div>
-					  <div class="form-group">
-					    <label for="exampleInputPassword1" class="form-label">Nombre Empresa</label>
-					    <input type="text" class="form-control" name="nombreEmpresa" id="idNombreEmpresa">
-					  </div>
+					  
 					  <div class="form-group">
 					    <label for="exampleInputPassword1" class="form-label">Nombre Proveedor</label>
 					    <input type="text" class="form-control" name="nombreProveedor" id="idNombreProveedor">
-					  </div>				  
+					  </div>		
+					  
+					  <div class="form-group">
+					    <label for="exampleInputPassword1" class="form-label">Distrito</label>
+					    <input type="text" class="form-control" name="distritoProveedor" id="idDistritoProveedor">
+					  </div>
+					  
+					  <div class="form-group">
+					    <label for="exampleInputPassword1" class="form-label">Teléfono</label>
+					    <input type="text" class="form-control" name="telefonoProveedor" id="idTelefonoProveedor">
+					  </div>
+					  
+					  <div class="form-group">
+					    <label for="exampleInputPassword1" class="form-label">Estado</label>
+					    <input type="text" class="form-control" name="estadoProveedor" id="idEstadoProveedor">
+					  </div>		  
 				  				  				  
 				  <div class="modal-footer">
 				  	<button type="submit" class="btn btn-primary">Grabar</button>
@@ -106,8 +118,10 @@
 		        <thead>
 		            <tr>
 		                <th>CÓDIGO</th>
-		                <th>NOMBRE EMPRESA</th>
 		                <th>NOMBRE PROVEEDOR</th>
+		                <th>DISTRITO</th>
+		                <th>TELÉFONO</th>
+		                <th>ESTADO</th>
 		                <th></th>
 		                <th></th>
 		            </tr>
@@ -115,9 +129,11 @@
 		        <tbody>
 		        		<c:forEach items="${requestScope.listarProveedor}" var="row">
 				            <tr>
-				                <td>${row.id_provee}</td>
-				                <td>${row.nom_empresa}</td>
-				                <td>${row.nom_provee}</td>
+				                <td>${row.id_prove}</td>
+				                <td>${row.nom_prove}</td>
+				                <td>${row.dist_prove}</td>
+				                <td>${row.telf_prove}</td>
+				                <td>${row.estado_prove}</td>
 				                <td><button type="button" class="btn btn-success" 
 				                			data-bs-toggle="modal" data-bs-target="#staticBackdrop">Editar</button></td>
 				                <td><button type="button" class="btn btn-danger" 
@@ -165,19 +181,23 @@
 	//aisgnar evento click a todos los botones con nombre de clase "btn-success"
 	$(document).on("click",".btn-success",function(){
 		//variables
-		let id,nomEmp,nomPro;
+		let id,nomPro,distPro,telfPro,estPro;
 		//obtener los datos de todas las columnas según el botón editar que se a pulsado
 		id=$(this).parents("tr").find("td")[0].innerHTML;
-		nomEmp=$(this).parents("tr").find("td")[1].innerHTML;
-		nomPro=$(this).parents("tr").find("td")[2].innerHTML;
+		nomPro=$(this).parents("tr").find("td")[1].innerHTML;
+		distPro=$(this).parents("tr").find("td")[2].innerHTML;
+		telfPro=$(this).parents("tr").find("td")[3].innerHTML;
+		estPro=$(this).parents("tr").find("td")[4].innerHTML;
 		
 		
 		$.get("ServletProveedorJSON?idpro="+id,function(response){         // SSDFDSFSDFDSFSDFSDFSDFSDFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
 			//console.log(response);
 			//asignar a los controles las claves del parámetro response
 			$("#idProveedor").val(id);
-			$("#idNombreEmpresa").val(response.nombreEmpresa);
 			$("#idNombreProveedor").val(response.nombreProveedor);
+			$("#idDistritoProveedor").val(response.distritoProveedor);
+			$("#idTelefonoProveedor").val(response.telefonoProveedor);
+			$("#idEstadoProveedor").val(response.estadoProveedor);
 			
 		})			
 	})							
@@ -188,10 +208,10 @@
     $(document).ready(function(){     
         $('#idRegistrar').bootstrapValidator({      
         	 fields:{
-        		 	nombreEmpresa:{
+        		  nombreProveedor:{
         		 		validators:{
         		 			notEmpty:{
-        		 				message:'Este campo es obligatorio'
+        		 				message:'Campo Nombre es obligatorio'
         		 			},
         		 			regexp:{
         		 				regexp:/^[a-zA-Z\ñ\Ñ\s\á\é\í\ó\ú\Á\É\Í\Ó\Ú]{4,20}$/,
@@ -199,11 +219,23 @@
         		 			}
         		 		}
         		 	},
-        		 	nombreProveedor:{
+        		 	distritoProveedor:{
         		 		validators:{
         		 			validators:{
             		 			notEmpty:{
-            		 				message:'Este campo es obligatorio'
+            		 				message:'Campo Distrito es obligatorio'
+            		 			},
+            		 			regexp:{
+            		 				regexp:/^[a-zA-Z\ñ\Ñ\s\á\é\í\ó\ú\Á\É\Í\Ó\Ú]{4,20}$/,
+            		 				message:'Solo letras MIN:3 - MAX:20'
+            		 			}
+        		 		}
+        		 	},
+        		 	estadoProveedor:{
+        		 		validators:{
+        		 			validators:{
+            		 			notEmpty:{
+            		 				message:'Campo estado es obligatorio'
             		 			},
             		 			regexp:{
             		 				regexp:/^[a-zA-Z\ñ\Ñ\s\á\é\í\ó\ú\Á\É\Í\Ó\Ú]{4,20}$/,
