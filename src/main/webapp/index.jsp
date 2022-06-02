@@ -29,13 +29,13 @@
     left: 250px;
     height: 100vh;
     width: calc(100% - 250px);
-    background-color: var(--body-color);
+    background-image:url("https://portal.andina.pe/EDPfotografia3/Thumbnail/2018/07/14/000518171W.jpg");
     transition: var(--tran-05);
 }
 .home .text{
     font-size: 30px;
     font-weight: 500;
-    color: var(--text-color);
+    color: white;
     padding: 12px 60px;
 }
 
@@ -43,7 +43,7 @@
     left: 78px;
     height: 100vh;
     width: calc(100% - 78px);
-	background-image:url("https://quiasma.com.mx/wp-content/uploads/2017/03/fondo-blanco.jpg");
+	background-image:url("https://mecaluxes.cdnwm.com/blog/img/almacen-transito-leroy-merlin-guadalajara-bricolaje-jardineria.1.16.jpg");
 
 }
 body.dark .home .text{

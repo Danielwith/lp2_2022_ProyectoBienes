@@ -43,7 +43,6 @@
 </head>
 <body>
 	<jsp:include page="partialMenu.jsp"></jsp:include>
-	<div class="container home ">
 	<div class="container">
 
 		<h1 class="text-center mt-5">Listado de Guia</h1>
@@ -99,7 +98,7 @@
 				  </div>	
 				  		  				  				  
 				  <div class="modal-footer">
-				  	<button type="submit" class="btn btn-dark">Grabar</button>
+				  	<button type="submit" class="btn btn-success">Grabar</button>
 			        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
 			      </div>				  
 				</form>		       		        		        

@@ -44,7 +44,7 @@
 <body>
 	<jsp:include page="partialMenu.jsp"></jsp:include>
 	<!-- Añadir class .home  -->
-	<div class="container home">
+	<div class="container">
 		
 		<h1 class="text-center mt-5">Listado de Bienes</h1>
 			<c:if test="${requestScope.MENSAJE!=null}">
@@ -94,7 +94,7 @@
 				    <input type="text" class="form-control" name="codigocompra" id="idCompra">
 				  </div>			  				  				  
 				  <div class="modal-footer">
-				  	<button type="submit" class="btn btn-purple">Grabar</button>
+				  	<button type="submit" class="btn btn-success">Grabar</button>
 			        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
 			      </div>				  
 				</form>		       		        		        
