@@ -133,7 +133,7 @@
 		                <th>NOMBRE PROVEEDOR</th>
 		                <th>DISTRITO</th>
 		                <th>TELÉFONO</th>
-		                <th>ESTADO</th>
+		                <th>ESTADOOOO</th>
 		                <th></th>
 		                <th></th>
 		            </tr>
