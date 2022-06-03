@@ -115,6 +115,7 @@ public class MySqlGuiaDAO implements GuiaDAO {
 			pstm.setString(3, bean.getDescripcionguiacompra() );
 			pstm.setString(4, bean.getCantidadguiacompra());
 			pstm.setDouble(5, bean.getPrecioguiacompra());
+			pstm.setInt(6, bean.getCodigoguiacompra());;
 			//5
 			salida=pstm.executeUpdate();
 		} catch (SQLException e) {
