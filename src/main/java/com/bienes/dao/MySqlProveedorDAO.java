@@ -7,15 +7,14 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.bienes.entidad.InscripcionSUNARP;
-import com.bienes.interfaces.BienesDAO;
-import com.bienes.interfaces.InscripcionSUNARPDAO;
+import com.bienes.entidad.Proveedor;
+import com.bienes.interfaces.ProveedorDAO;
 import com.bienes.utils.MySqlConexion;
 
-public class MySqlInscripcionSUNARPDAO implements InscripcionSUNARPDAO {
+public class MySqlProveedorDAO implements ProveedorDAO {
 
 	@Override
-	public int save(InscripcionSUNARP bean) {
+	public int savePro(Proveedor bean) {
 		int salida=-1;
 		Connection cn=null;
 		PreparedStatement pstm=null;
@@ -23,17 +22,14 @@ public class MySqlInscripcionSUNARPDAO implements InscripcionSUNARPDAO {
 			//1
 			cn=MySqlConexion.getConectar();
 			//2
-			String sql="insert into bienes values(null,?,?,?,?,?,?)";
+			String sql="insert into proveedor values(null,?,?,?,?)";
 			//3
 			pstm=cn.prepareStatement(sql);
 			//4
-			pstm.setString(1, bean.getDescrip_bien());
-			pstm.setInt(2, bean.getCantidad_bien());
-			pstm.setString(3, bean.getNom_provee() );
-			pstm.setDouble(4, bean.getPrecio_bien());
-			pstm.setString(5, bean.getNom_provee());
-			pstm.setDate(6, bean.getFecha_llegada());
-			
+			pstm.setString(1, bean.getNom_prove());
+			pstm.setString(2, bean.getDist_prove());
+			pstm.setString(3, bean.getTelf_prove());
+			pstm.setString(4, bean.getEstado_prove());
 			//5
 			salida=pstm.executeUpdate();
 		} catch (SQLException e) {
@@ -49,9 +45,9 @@ public class MySqlInscripcionSUNARPDAO implements InscripcionSUNARPDAO {
 		}
 		return salida;
 	}
-
+	
 	@Override
-	public int update(InscripcionSUNARP bean) {
+	public int updatePro(Proveedor bean) {
 		int salida=-1;
 		Connection cn=null;
 		PreparedStatement pstm=null;
@@ -59,17 +55,14 @@ public class MySqlInscripcionSUNARPDAO implements InscripcionSUNARPDAO {
 			//1
 			cn=MySqlConexion.getConectar();
 			//2
-			String sql="update inscripcion_sunarp set descrip_bien=?, cantidad_bien=?, precio_bien=?, nom_provee=?, fecha_llegada=? "
-					+ " where codigo_inscri=? ";
+			String sql="update proveedor set nom_prove=?, dist_prove=?, telf_prove=?, estado_prove=? where id_prove=?";
 			//3
 			pstm=cn.prepareStatement(sql);
 			//4
-			pstm.setString(1, bean.getDescrip_bien());
-			pstm.setInt(2, bean.getCantidad_bien());
-			pstm.setString(3, bean.getNom_provee() );
-			pstm.setDouble(4, bean.getPrecio_bien());
-			pstm.setString(5, bean.getNom_provee());
-			pstm.setDate(6, bean.getFecha_llegada());
+			pstm.setString(1, bean.getNom_prove());
+			pstm.setString(2, bean.getDist_prove());
+			pstm.setString(3, bean.getTelf_prove());
+			pstm.setString(4, bean.getEstado_prove());
 			//5
 			salida=pstm.executeUpdate();
 		} catch (SQLException e) {
@@ -85,9 +78,9 @@ public class MySqlInscripcionSUNARPDAO implements InscripcionSUNARPDAO {
 		}
 		return salida;
 	}
-
+	
 	@Override
-	public int delete(int cod) {
+	public int deletePro(int id) {
 		int salida=-1;
 		Connection cn=null;
 		PreparedStatement pstm=null;
@@ -95,11 +88,11 @@ public class MySqlInscripcionSUNARPDAO implements InscripcionSUNARPDAO {
 			//1
 			cn=MySqlConexion.getConectar();
 			//2
-			String sql="delete from inscripcion_sunarp where codigo_inscri=?";
+			String sql="delete from proveedor where id_prove=? ";
 			//3
 			pstm=cn.prepareStatement(sql);
 			//4
-			pstm.setInt(1, cod);
+			pstm.setInt(1, id);
 			//5
 			salida=pstm.executeUpdate();
 		} catch (SQLException e) {
@@ -115,10 +108,10 @@ public class MySqlInscripcionSUNARPDAO implements InscripcionSUNARPDAO {
 		}
 		return salida;
 	}
-
+	
 	@Override
-	public InscripcionSUNARP findById(int cod) {
-		InscripcionSUNARP bean=null;
+	public Proveedor findByIdPro(int id) {
+		Proveedor bean=null;
 		Connection cn=null;
 		PreparedStatement pstm=null;
 		ResultSet rs=null;
@@ -126,24 +119,24 @@ public class MySqlInscripcionSUNARPDAO implements InscripcionSUNARPDAO {
 			//1.
 			cn=MySqlConexion.getConectar();
 			//2.
-			String sql="select * from inscripcion_sunarp  where codigo_inscri=?";
+			String sql="select * from proveedor where id_prove=?";
 			//3.
 			pstm=cn.prepareStatement(sql);
 			//4.parámetros
-			pstm.setInt(1, cod);
+			pstm.setInt(1, id);
 			//5.
 			rs=pstm.executeQuery();
 			//6.validar si existe registro
 			if(rs.next()) {
 				//7
-				bean=new InscripcionSUNARP();
+				bean=new Proveedor();
 				//8
-			    bean.setCodigo_inscri(rs.getInt(1));
-				bean.setDescrip_bien(rs.getString(2));
-				bean.setCantidad_bien(rs.getInt(3)); 
-				bean.setPrecio_bien(rs.getDouble(4));
-				bean.setNom_provee(rs.getString(5));
-				bean.setFecha_llegada(rs.getDate(6));
+				
+				bean.setId_prove(rs.getInt(1));
+				bean.setNom_prove(rs.getString(2));
+				bean.setDist_prove(rs.getString(3));
+				bean.setTelf_prove(rs.getString(4));
+				bean.setEstado_prove(rs.getString(5));
 				
 			}
 		} catch (SQLException e) {
@@ -160,11 +153,11 @@ public class MySqlInscripcionSUNARPDAO implements InscripcionSUNARPDAO {
 		}		
 		return bean;
 	}
-
+	
 	@Override
-	public List<InscripcionSUNARP> listAll() {
-		List<InscripcionSUNARP> lista=new ArrayList<InscripcionSUNARP>();
-		InscripcionSUNARP bean=null;
+	public List<Proveedor> listAll() {
+		List<Proveedor> lista=new ArrayList<Proveedor>();
+		Proveedor bean=null;
 		Connection cn=null;
 		PreparedStatement pstm=null;
 		ResultSet rs=null;
@@ -172,7 +165,7 @@ public class MySqlInscripcionSUNARPDAO implements InscripcionSUNARPDAO {
 			//1.
 			cn=MySqlConexion.getConectar();
 			//2.
-			String sql="select * from inscripcion_sunarp";
+			String sql="select * from proveedor";
 			//3.
 			pstm=cn.prepareStatement(sql);
 			//4.parámetros
@@ -182,14 +175,14 @@ public class MySqlInscripcionSUNARPDAO implements InscripcionSUNARPDAO {
 			//6.
 			while(rs.next()) {
 				//7
-				bean=new InscripcionSUNARP();
+				bean=new Proveedor();
 				//8
-				  bean.setCodigo_inscri(rs.getInt(1));
-					bean.setDescrip_bien(rs.getString(2));
-					bean.setCantidad_bien(rs.getInt(3)); 
-					bean.setPrecio_bien(rs.getDouble(4));
-					bean.setNom_provee(rs.getString(5));
-					bean.setFecha_llegada(rs.getDate(6));
+				
+				bean.setId_prove(rs.getInt(1));
+				bean.setNom_prove(rs.getString(2));
+				bean.setDist_prove(rs.getString(3));
+				bean.setTelf_prove(rs.getString(4));
+				bean.setEstado_prove(rs.getString(5));
 				
 				//9
 				lista.add(bean);
@@ -209,5 +202,5 @@ public class MySqlInscripcionSUNARPDAO implements InscripcionSUNARPDAO {
 		
 		return lista;
 	}
-
+	
 }

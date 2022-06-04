@@ -2,29 +2,44 @@ package com.bienes.entidad;
 
 public class Proveedor {
 
-		public int id_provee;
-		public String nom_empresa;
-		public String nom_provee;
+		public int id_prove;
+		public String nom_prove;
+		public String dist_prove;
+		public String telf_prove;
+		public String estado_prove;
 		
+		public int getId_prove() {
+			return id_prove;
+		}
+		public void setId_prove(int id_prove) {
+			this.id_prove = id_prove;
+		}
+		public String getNom_prove() {
+			return nom_prove;
+		}
+		public void setNom_prove(String nom_prove) {
+			this.nom_prove = nom_prove;
+		}
+		public String getDist_prove() {
+			return dist_prove;
+		}
+		public void setDist_prove(String dist_prove) {
+			this.dist_prove = dist_prove;
+		}
+		public String getTelf_prove() {
+			return telf_prove;
+		}
+		public void setTelf_prove(String telf_prove) {
+			this.telf_prove = telf_prove;
+		}
+		public String getEstado_prove() {
+			return estado_prove;
+		}
+		public void setEstado_prove(String estado_prove) {
+			this.estado_prove = estado_prove;
+		}
 		
-		public int getId_provee() {
-			return id_provee;
-		}
-		public void setId_provee(int id_provee) {
-			this.id_provee = id_provee;
-		}
-		public String getNom_empresa() {
-			return nom_empresa;
-		}
-		public void setNom_empresa(String nom_empresa) {
-			this.nom_empresa = nom_empresa;
-		}
-		public String getNom_provee() {
-			return nom_provee;
-		}
-		public void setNom_provee(String nom_provee) {
-			this.nom_provee = nom_provee;
-		}
+	
 		
 		
 }

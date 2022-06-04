@@ -45,7 +45,7 @@
 	<jsp:include page="partialMenu.jsp"></jsp:include>
 	<div class="container">
 
-		<h1 class="text-center mt-5">Listado de SUNARP</h1>
+		<h1 class="text-center mt-5">Listado de Guia</h1>
 			<c:if test="${requestScope.MENSAJE!=null}">
 				<div class="alert alert-warning alert-dismissible fade show" role="alert">
 				  <strong>MENSAJE : </strong> ${requestScope.MENSAJE} 
@@ -63,20 +63,30 @@
 		  <div class="modal-dialog modal-dialog-centered">
 		    <div class="modal-content">
 		      <div class="modal-header">
-		        <h5 class="modal-title" id="staticBackdropLabel">INSCRIPCION SUNARP</h5>
+		        <h5 class="modal-title" id="staticBackdropLabel">GUIA</h5>
 		      </div>
 		      <div class="modal-body">		        
-		        <form id="idRegistrar" method="post" action="ServletSunarp?tipo=REGISTRAR">
+		        <form id="idRegistrar" method="post" action="ServletGuia?tipo=REGISTRAR">
 				  <div class="form-group">
-				    <label for="exampleInputEmail1" class="form-label">Código Inscripcion</label>
+				    <label for="exampleInputEmail1" class="form-label">Código</label>
 				    <input type="text" class="form-control" name="codigo" id="idCodigo" readonly value="0">
 				  </div>
 				
 				  <div class="form-group">
-				    <label for="exampleInputEmail1" class="form-label">Descripcion</label>
-				    <input type="text" class="form-control" name="descripcion" id="idDescripcion">
+				    <label for="exampleInputEmail1" class="form-label">Nombre Proveedor</label>
+				    <input type="text" class="form-control" name="nombre" id="idNombre">
 				  </div>
 				  
+				  <div class="form-group">
+				    <label for="exampleInputPassword1" class="form-label">Fecha Compra</label>
+				    <input type="text" class="form-control" name="fecha" id="idFecha">
+				  </div>
+				  
+				  <div class="form-group">
+				    <label for="exampleInputPassword1" class="form-label">Descripcion</label>
+				    <input type="text" class="form-control" name="descripcion" id="idDescripcion">
+				  </div>			
+				  	  
 				  <div class="form-group">
 				    <label for="exampleInputPassword1" class="form-label">Cantidad</label>
 				    <input type="text" class="form-control" name="cantidad" id="idCantidad">
@@ -85,20 +95,10 @@
 				  <div class="form-group">
 				    <label for="exampleInputPassword1" class="form-label">Precio</label>
 				    <input type="text" class="form-control" name="precio" id="idPrecio">
-				  </div>			
-				  	  
-				  <div class="form-group">
-				    <label for="exampleInputPassword1" class="form-label">Nombre Proveedor</label>
-				    <input type="text" class="form-control" name="nombreproveedor" id="idNompro">
-				  </div>
-				  
-				  <div class="form-group">
-				    <label for="exampleInputPassword1" class="form-label">Fecha Llegada</label>
-				    <input type="text" class="form-control" name="fechallegada" id="idFechallegada">
 				  </div>	
 				  		  				  				  
 				  <div class="modal-footer">
-				  	<button type="submit" class="btn btn-success">Registrar</button>
+				  	<button type="submit" class="btn btn-success">Grabar</button>
 			        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
 			      </div>				  
 				</form>		       		        		        
@@ -114,7 +114,7 @@
 		        <h5 class="modal-title" id="staticBackdropLabel">Sistema</h5>
 		      </div>
 		      <div class="modal-body">
-		        <form id="idRegistrar" method="post" action="ServletSunarp?tipo=ELIMINAR">
+		        <form id="idRegistrar" method="post" action="ServletGuia?tipo=ELIMINAR">
 				    <input type="hidden" class="form-control" name="codigoEliminar" id="codigoEliminar">
 				  <h4>Seguro de eliminar?</h4>
 				  <div class="modal-footer">
@@ -132,24 +132,24 @@
 		        <thead>
 		            <tr>
 		                <th>CÓDIGO</th>
+		                <th>NOMBRE PROVEEDOR</th>
+		                <th>FECHA COMPRA</th>
 		                <th>DESCRIPCION</th>
 		                <th>CANTIDAD</th>
 		                <th>PRECIO</th>
-		                <th>NOMBRE PROVEEDOR</th>
-		                <th>FECHA LLEGADA</th>
 		                <th></th>
 		                <th></th>
 		            </tr>
 		        </thead>
 		        <tbody>
-		        		<c:forEach items="${requestScope.listarSUNARP}" var="row">
+		        		<c:forEach items="${requestScope.listarGuia}" var="row">
 				            <tr>
-				                <td>${row.codigo_inscri}</td>
-				                <td>${row.descrip_bien}</td>
-				                <td>${row.cantidad_bien}</td>
-				                <td>${row.precio_bien}</td>
+				                <td>${row.codigoguiacompra}</td>
 				                <td>${row.nom_provee}</td>
-				                <td>${row.fecha_llegada}</td>
+				                <td>${row.fecha_compra}</td>
+				                <td>${row.descripcionguiacompra}</td>
+				                <td>${row.cantidadguiacompra}</td>
+				                <td>${row.precioguiacompra}</td>
 				                <td><button type="button" class="btn btn-success" 
 				                			data-bs-toggle="modal" data-bs-target="#staticBackdrop">Editar</button></td>
 				                <td><button type="button" class="btn btn-danger" 
@@ -196,24 +196,24 @@
 	//aisgnar evento click a todos los botones con nombre de clase "btn-success"
 	$(document).on("click",".btn-success",function(){
 		//variables
-		let cod,descripcion,cantidad,precio,nompro,fechalle;
+		let cod,nomprovee,fechacompra,descrip,cant,precio;
 		//obtener los datos de todas las columnas según el botón editar que se a pulsado
 		cod=$(this).parents("tr").find("td")[0].innerHTML;
-		descripcion=$(this).parents("tr").find("td")[1].innerHTML;
-		cantidad=$(this).parents("tr").find("td")[2].innerHTML;
-		precio=$(this).parents("tr").find("td")[3].innerHTML;
-		nompro=$(this).parents("tr").find("td")[4].innerHTML;
-		fechalle=$(this).parents("tr").find("td")[5].innerHTML;
+		nomprovee=$(this).parents("tr").find("td")[1].innerHTML;
+		fechacompra=$(this).parents("tr").find("td")[2].innerHTML;
+		descrip=$(this).parents("tr").find("td")[3].innerHTML;
+		cant=$(this).parents("tr").find("td")[4].innerHTML;
+		precio=$(this).parents("tr").find("td")[5].innerHTML;
 		
-		$.get("ServletSunarpJSON?codigo="+cod,function(response){
+		$.get("ServletGuiaJSON?codigo="+cod,function(response){
 			//console.log(response);
 			//asignar a los controles las claves del parámetro response
 			$("#idCodigo").val(cod);
-			$("#idDescripcion").val(response.descrip_bien);
-			$("#idCantidad").val(response.cantidad_bien);
-			$("#idPrecio").val(response.precio_bien);
-			$("#idNompro").val(response.nom_provee);
-			$("#idFechallegada").val(response.fecha_llegada);
+			$("#idNombre").val(response.nom_provee);
+			$("#idFecha").val(response.fecha_compra);
+			$("#idDescripcion").val(response.descripcionguiacompra);
+			$("#idCantidad").val(response.cantidadguiacompra);
+			$("#idPrecio").val(response.precioguiacompra);
 					
 		})	
 		
@@ -291,3 +291,11 @@
 </script> 
 </body>
 </html>
+
+
+
+
+
+
+
+

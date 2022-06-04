@@ -42,10 +42,10 @@
 </style>
 </head>
 <body>
-	<jsp:include page="partialMenu.jsp"></jsp:include>
+<jsp:include page="partialMenu.jsp"></jsp:include>
+	<!-- Añadir class .home  -->
 	<div class="container">
-
-		<h1 class="text-center mt-5">Listado de SUNARP</h1>
+		<h1 class="text-center mt-5">Listado de Proveedores</h1>
 			<c:if test="${requestScope.MENSAJE!=null}">
 				<div class="alert alert-warning alert-dismissible fade show" role="alert">
 				  <strong>MENSAJE : </strong> ${requestScope.MENSAJE} 
@@ -63,44 +63,42 @@
 		  <div class="modal-dialog modal-dialog-centered">
 		    <div class="modal-content">
 		      <div class="modal-header">
-		        <h5 class="modal-title" id="staticBackdropLabel">INSCRIPCION SUNARP</h5>
+		        <h5 class="modal-title" id="staticBackdropLabel">PROVEEDOR</h5>
 		      </div>
 		      <div class="modal-body">		        
-		        <form id="idRegistrar" method="post" action="ServletSunarp?tipo=REGISTRAR">
-				  <div class="form-group">
-				    <label for="exampleInputEmail1" class="form-label">Código Inscripcion</label>
-				    <input type="text" class="form-control" name="codigo" id="idCodigo" readonly value="0">
-				  </div>
-				
-				  <div class="form-group">
-				    <label for="exampleInputEmail1" class="form-label">Descripcion</label>
-				    <input type="text" class="form-control" name="descripcion" id="idDescripcion">
-				  </div>
-				  
-				  <div class="form-group">
-				    <label for="exampleInputPassword1" class="form-label">Cantidad</label>
-				    <input type="text" class="form-control" name="cantidad" id="idCantidad">
-				  </div>
-				  
-				  <div class="form-group">
-				    <label for="exampleInputPassword1" class="form-label">Precio</label>
-				    <input type="text" class="form-control" name="precio" id="idPrecio">
-				  </div>			
-				  	  
-				  <div class="form-group">
-				    <label for="exampleInputPassword1" class="form-label">Nombre Proveedor</label>
-				    <input type="text" class="form-control" name="nombreproveedor" id="idNompro">
-				  </div>
-				  
-				  <div class="form-group">
-				    <label for="exampleInputPassword1" class="form-label">Fecha Llegada</label>
-				    <input type="text" class="form-control" name="fechallegada" id="idFechallegada">
-				  </div>	
-				  		  				  				  
+		        <form id="idRegistrar" method="post" action="ServletProveedor?tipo=REGISTRAR">
+		        
+			 
+					  <div class="form-group">
+					    <label for="exampleInputEmail1" class="form-label">ID</label>
+					    <input type="text" class="form-control" name="idpro" id="idProveedor" readonly value="0">
+					  </div>
+					  
+					  <div class="form-group">
+					    <label for="exampleInputPassword1" class="form-label">Nombre Proveedor</label>
+					    <input type="text" class="form-control" name="nombreProveedor" id="idNombreProveedor">
+					  </div>		
+					  
+					  <div class="form-group">
+					    <label for="exampleInputPassword1" class="form-label">Distrito</label>
+					    <input type="text" class="form-control" name="distritoProveedor" id="idDistritoProveedor">
+					  </div>
+					  
+					  <div class="form-group">
+					    <label for="exampleInputPassword1" class="form-label">Teléfono</label>
+					    <input type="text" class="form-control" name="telefonoProveedor" id="idTelefonoProveedor">
+					  </div>
+					  
+					  <div class="form-group">
+					    <label for="exampleInputPassword1" class="form-label">Estado</label>
+					    <input type="text" class="form-control" name="estadoProveedor" id="idEstadoProveedor">
+					  </div>		  
+				  				  				  
 				  <div class="modal-footer">
-				  	<button type="submit" class="btn btn-success">Registrar</button>
+				  	<button type="submit" class="btn btn-success">Grabar</button>
 			        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
-			      </div>				  
+			      </div>	
+			      			  
 				</form>		       		        		        
 		      </div>
 		    </div>
@@ -114,9 +112,9 @@
 		        <h5 class="modal-title" id="staticBackdropLabel">Sistema</h5>
 		      </div>
 		      <div class="modal-body">
-		        <form id="idRegistrar" method="post" action="ServletSunarp?tipo=ELIMINAR">
+		        <form id="idRegistrar" method="post" action="ServletProveedor?tipo=ELIMINAR">
 				    <input type="hidden" class="form-control" name="codigoEliminar" id="codigoEliminar">
-				  <h4>Seguro de eliminar?</h4>
+				  <h4>¿Desea eliminar?</h4>
 				  <div class="modal-footer">
 				  	<button type="submit" class="btn btn-primary">SI</button>
 			        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">NO</button>
@@ -132,24 +130,22 @@
 		        <thead>
 		            <tr>
 		                <th>CÓDIGO</th>
-		                <th>DESCRIPCION</th>
-		                <th>CANTIDAD</th>
-		                <th>PRECIO</th>
 		                <th>NOMBRE PROVEEDOR</th>
-		                <th>FECHA LLEGADA</th>
+		                <th>DISTRITO</th>
+		                <th>TELÉFONO</th>
+		                <th>ESTADOOOO</th>
 		                <th></th>
 		                <th></th>
 		            </tr>
 		        </thead>
 		        <tbody>
-		        		<c:forEach items="${requestScope.listarSUNARP}" var="row">
+		        		<c:forEach items="${requestScope.listarProveedor}" var="row">
 				            <tr>
-				                <td>${row.codigo_inscri}</td>
-				                <td>${row.descrip_bien}</td>
-				                <td>${row.cantidad_bien}</td>
-				                <td>${row.precio_bien}</td>
-				                <td>${row.nom_provee}</td>
-				                <td>${row.fecha_llegada}</td>
+				                <td>${row.id_prove}</td>
+				                <td>${row.nom_prove}</td>
+				                <td>${row.dist_prove}</td>
+				                <td>${row.telf_prove}</td>
+				                <td>${row.estado_prove}</td>
 				                <td><button type="button" class="btn btn-success" 
 				                			data-bs-toggle="modal" data-bs-target="#staticBackdrop">Editar</button></td>
 				                <td><button type="button" class="btn btn-danger" 
@@ -181,110 +177,85 @@
 <script>
 	$(document).ready(function() {
 	    $('#example').DataTable();
+	    //$("#example tbody").empty();
 	} );
 	
 	//aisgnar evento click a todos los botones con nombre de clase "btn-danger"
 	$(document).on("click",".btn-danger",function(){
 		//variable
-		let cod;
+		let id;
 		//obtener el código del docente según el botón eliminar que se a pulsado
-		cod=$(this).parents("tr").find("td")[0].innerHTML;
+		id=$(this).parents("tr").find("td")[0].innerHTML;
 		//asignar a la caja con id "codigoEliminar" el valor de la variable "cod"
-		$("#codigoEliminar").val(cod);
+		$("#codigoEliminar").val(id);
 		
 	})
 	//aisgnar evento click a todos los botones con nombre de clase "btn-success"
 	$(document).on("click",".btn-success",function(){
 		//variables
-		let cod,descripcion,cantidad,precio,nompro,fechalle;
+		let id,nomPro,distPro,telfPro,estPro;
 		//obtener los datos de todas las columnas según el botón editar que se a pulsado
-		cod=$(this).parents("tr").find("td")[0].innerHTML;
-		descripcion=$(this).parents("tr").find("td")[1].innerHTML;
-		cantidad=$(this).parents("tr").find("td")[2].innerHTML;
-		precio=$(this).parents("tr").find("td")[3].innerHTML;
-		nompro=$(this).parents("tr").find("td")[4].innerHTML;
-		fechalle=$(this).parents("tr").find("td")[5].innerHTML;
+		id=$(this).parents("tr").find("td")[0].innerHTML;
+		nomPro=$(this).parents("tr").find("td")[1].innerHTML;
+		distPro=$(this).parents("tr").find("td")[2].innerHTML;
+		telfPro=$(this).parents("tr").find("td")[3].innerHTML;
+		estPro=$(this).parents("tr").find("td")[4].innerHTML;
 		
-		$.get("ServletSunarpJSON?codigo="+cod,function(response){
+		
+		$.get("ServletProveedorJSON?idpro="+id,function(response){         // SSDFDSFSDFDSFSDFSDFSDFSDFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
 			//console.log(response);
 			//asignar a los controles las claves del parámetro response
-			$("#idCodigo").val(cod);
-			$("#idDescripcion").val(response.descrip_bien);
-			$("#idCantidad").val(response.cantidad_bien);
-			$("#idPrecio").val(response.precio_bien);
-			$("#idNompro").val(response.nom_provee);
-			$("#idFechallegada").val(response.fecha_llegada);
-					
-		})	
-		
-	})				
+			$("#idProveedor").val(id);
+			$("#idNombreProveedor").val(response.nombreProveedor);
+			$("#idDistritoProveedor").val(response.distritoProveedor);
+			$("#idTelefonoProveedor").val(response.telefonoProveedor);
+			$("#idEstadoProveedor").val(response.estadoProveedor);
+			
+		})			
+	})							
+	}
 		
 </script>
 <script type="text/javascript">    
     $(document).ready(function(){     
-        $('#idRegistrar').bootstrapValidator({
+        $('#idRegistrar').bootstrapValidator({      
         	 fields:{
-        		     nombre:{
+        		  nombreProveedor:{
         		 		validators:{
         		 			notEmpty:{
-        		 				message:'Campo proveedor es obligatorio'
+        		 				message:'Campo Nombre es obligatorio'
         		 			},
         		 			regexp:{
         		 				regexp:/^[a-zA-Z\ñ\Ñ\s\á\é\í\ó\ú\Á\É\Í\Ó\Ú]{4,20}$/,
-        		 				message:'Campo proveedor MIN:4 - MAX:20'
+        		 				message:'Solo letras MIN:4 - MAX:20'
         		 			}
         		 		}
         		 	},
-        		 	
-        		 fecha:{
+        		 	distritoProveedor:{
         		 		validators:{
-        		 			notEmpty:{
-        		 				message:'Campo fecha es obligatorio'
-        		 			},
-        		 			regexp:{
-        		 				regexp:/^([0-9]{4})-([0-9]{1,2})-([0-9]{1,2})$/,
-        		 				message:'Campo fecha es obligatorio yyyy-mm-dd'
-        		 			}
-        		 			
+        		 			validators:{
+            		 			notEmpty:{
+            		 				message:'Campo Distrito es obligatorio'
+            		 			},
+            		 			regexp:{
+            		 				regexp:/^[a-zA-Z\ñ\Ñ\s\á\é\í\ó\ú\Á\É\Í\Ó\Ú]{4,20}$/,
+            		 				message:'Solo letras MIN:3 - MAX:20'
+            		 			}
         		 		}
         		 	},
-        		 	
-        		 	descripcion:{
+        		 	estadoProveedor:{
         		 		validators:{
-        		 			notEmpty:{
-        		 				message:'Campo descripción es obligatorio'
-        		 			},
-        		 			regexp:{
-        		 				regexp:/^[a-zA-Z\ñ\Ñ\s\á\é\í\ó\ú\Á\É\Í\Ó\Ú]{4,20}$/,
-        		 				message:'Campo descripción solo letras MIN:4 - MAX:20'
-        		 			}
-        		 		}
-        		 	},
-        		 	
-        		 	cantidad:{
-        		 		validators:{
-        		 			notEmpty:{
-        		 				message:'Campo cantidad es obligatorio'
-        		 			},
-        		 			regexp:{
-        		 				regexp:/^\d+$/,
-        		 				message:'Campo cantidad debe ser #entero positivo'
-        		 			}
-        		 		}
-        		 	},
-        		 	
-        		 	precio:{
-        		 		validators:{
-        		 			notEmpty:{
-        		 				message:'Campo precio es obligatorio'
-        		 			},
-        		 			regexp:{
-        		 				regexp:/^\d+$/,
-        		 				message:'Campo precio debe ser numerico'
-        		 			}
+        		 			validators:{
+            		 			notEmpty:{
+            		 				message:'Campo estado es obligatorio'
+            		 			},
+            		 			regexp:{
+            		 				regexp:/^[a-zA-Z\ñ\Ñ\s\á\é\í\ó\ú\Á\É\Í\Ó\Ú]{4,20}$/,
+            		 				message:'Solo letras MIN:3 - MAX:20'
+            		 			}
         		 		}
         		 	}
-        		 	
+        		 	       		 	      
         	 }
         });   			
     });    

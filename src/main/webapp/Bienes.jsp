@@ -9,6 +9,7 @@
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 <link href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css" rel="stylesheet">´
+<link rel="stylesheet" href="css/stylePages.css">
 <style>
 	body{
 		background-image:url("https://quiasma.com.mx/wp-content/uploads/2017/03/fondo-blanco.jpg");
@@ -41,7 +42,10 @@
 </style>
 </head>
 <body>
+	<jsp:include page="partialMenu.jsp"></jsp:include>
+	<!-- Añadir class .home  -->
 	<div class="container">
+		
 		<h1 class="text-center mt-5">Listado de Bienes</h1>
 			<c:if test="${requestScope.MENSAJE!=null}">
 				<div class="alert alert-warning alert-dismissible fade show" role="alert">
@@ -86,19 +90,11 @@
 				    <input type="text" class="form-control" name="fechallegada" id="idFechallegada">
 				  </div>
 				  <div class="form-group">
-				    <label for="exampleInputPassword1" class="form-label">Nombre Operador</label>
-				    <input type="text" class="form-control" name="nombreoperador" id="idNombreoperador">
-				  </div>	
-				  <div class="form-group">
-				    <label for="exampleInputPassword1" class="form-label">Id Proveedor</label>
-				    <input type="text" class="form-control" name="idproveedor" id="idProveedor">
-				  </div>
-				  <div class="form-group">
 				    <label for="exampleInputPassword1" class="form-label">Codigo Compra</label>
 				    <input type="text" class="form-control" name="codigocompra" id="idCompra">
 				  </div>			  				  				  
 				  <div class="modal-footer">
-				  	<button type="submit" class="btn btn-dark">Grabar</button>
+				  	<button type="submit" class="btn btn-success">Grabar</button>
 			        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
 			      </div>				  
 				</form>		       		        		        
@@ -136,8 +132,6 @@
 		                <th>CANTIDAD</th>
 		                <th>PROVEEDOR</th>
 		                <th>FECHA LLEGADA</th>
-		                <th>NOMBRE OPERADOR</th>
-		                <th>ID PROVEEDOR</th>
 		                <th>CODIGO COMPRA</th>
 		                <th></th>
 		                <th></th>
@@ -151,8 +145,6 @@
 				                <td>${row.cantidad_bien}</td>
 				                <td>${row.nom_provee}</td>
 				                <td>${row.fecha_llegada}</td>
-				                <td>${row.nom_operador}</td>
-				                <td>${row.idproveedor}</td>
 				                <td>${row.codigoOrdendeCompra}</td>
 				                <td><button type="button" class="btn btn-success" 
 				                			data-bs-toggle="modal" data-bs-target="#staticBackdrop">Editar</button></td>
@@ -172,6 +164,7 @@
 
 
 	</div>
+
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
@@ -200,16 +193,14 @@
 	//aisgnar evento click a todos los botones con nombre de clase "btn-success"
 	$(document).on("click",".btn-success",function(){
 		//variables
-		let cod,descrip,cant,nomprovee,fechallegada,nomope,idprovee,codigocompra;
+		let cod,descrip,cant,nomprovee,fechallegada,codigocompra;
 		//obtener los datos de todas las columnas según el botón editar que se a pulsado
 		cod=$(this).parents("tr").find("td")[0].innerHTML;
 		descrip=$(this).parents("tr").find("td")[1].innerHTML;
 		cant=$(this).parents("tr").find("td")[2].innerHTML;
 		nomprovee=$(this).parents("tr").find("td")[3].innerHTML;
 		fechallegada=$(this).parents("tr").find("td")[4].innerHTML;
-		nomope=$(this).parents("tr").find("td")[5].innerHTML;
-		idprovee=$(this).parents("tr").find("td")[6].innerHTML;
-		codigocompra=$(this).parents("tr").find("td")[7].innerHTML;
+		codigocompra=$(this).parents("tr").find("td")[5].innerHTML;
 		
 		
 		$.get("ServletBienesJSON?codigo="+cod,function(response){
@@ -220,8 +211,6 @@
 			$("#idCantidad").val(response.cantidad_bien);
 			$("#idNombreproveedor").val(response.nom_provee);
 			$("#idFechallegada").val(response.fecha_llegada);
-			$("#idNombreoperador").val(response.nom_operador);
-			$("#idProveedor").val(response.idproveedor);
 			$("#idCompra").val(response.codigoOrdendeCompra);
 					
 		})	
@@ -278,28 +267,6 @@
         		 			
         		 		}
         		 	},
-        		 	nombreoperador:{
-        		 		validators:{
-        		 			notEmpty:{
-        		 				message:'Campo operador es obligatorio'
-        		 			},
-        		 			regexp:{
-        		 				regexp:/^[a-zA-Z\ñ\Ñ\s\á\é\í\ó\ú\Á\É\Í\Ó\Ú]{4,20}$/,
-        		 				message:'Campo operador solo letras MIN:4 - MAX:20'
-        		 			}
-        		 		}
-        		 	},
-        		 	idproveedor:{
-        		 		validators:{
-        		 			notEmpty:{
-        		 				message:'Campo idproveedor es obligatorio'
-        		 			},
-        		 			regexp:{
-        		 				regexp:/^\d+$/,
-        		 				message:'Campo idproveedor debe ser numerico'
-        		 			}
-        		 		}
-        		 	},
         		 	codigocompra:{
         		 		validators:{
         		 			notEmpty:{
@@ -314,6 +281,7 @@
         	 }
         });   			
     });    
+
 </script> 
 </body>
 </html>
