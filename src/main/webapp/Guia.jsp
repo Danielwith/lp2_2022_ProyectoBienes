@@ -73,7 +73,7 @@
 				  </div>
 				
 				  <div class="form-group">
-				    <label for="exampleInputEmail1" class="form-label">Nombre Proveedor</label>
+				    <label for="exampleInputEmail1" class="form-label">Proveedor</label>
 				    <input type="text" class="form-control" name="nombre" id="idNombre">
 				  </div>
 				  
@@ -132,7 +132,7 @@
 		        <thead>
 		            <tr>
 		                <th>CÓDIGO</th>
-		                <th>NOMBRE PROVEEDOR</th>
+		                <th>PROVEEDOR</th>
 		                <th>FECHA COMPRA</th>
 		                <th>DESCRIPCION</th>
 		                <th>CANTIDAD</th>

@@ -118,7 +118,7 @@ public class ServletSunarp extends HttpServlet {
 					salida=servicio.actualizar(bean);
 					//validar
 					if(salida>0) {
-						request.setAttribute("MENSAJE", "Bien actualizado correctamente");
+						request.setAttribute("MENSAJE", "Inscripcion actualizado correctamente");
 						listarSUNARP(request, response);
 					}
 					else {

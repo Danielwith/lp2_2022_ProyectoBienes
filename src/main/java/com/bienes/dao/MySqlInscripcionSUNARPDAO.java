@@ -57,7 +57,7 @@ public class MySqlInscripcionSUNARPDAO implements InscripcionSUNARPDAO {
 			//1
 			cn=MySqlConexion.getConectar();
 			//2
-			String sql="update inscripcion_sunarp set descripcion_bien=?, cantidad_bien=?, precio_bien=?, nom_provee=?, fecha_llegada=? where codigo_inscri=?" ;
+			String sql="update inscripcion_sunarp set descripcion_bien=?, cantidad_bien=?, precio_bien=?, nom_provee=?, fecha_llegada=? where codigo_inscri=? " ;
 			//3
 			pstm=cn.prepareStatement(sql);
 			//4

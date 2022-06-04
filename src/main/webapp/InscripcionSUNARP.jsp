@@ -224,7 +224,7 @@
     $(document).ready(function(){     
         $('#idRegistrar').bootstrapValidator({
         	 fields:{
-        		     nombre:{
+        		     nombreproveedor:{
         		 		validators:{
         		 			notEmpty:{
         		 				message:'Campo proveedor es obligatorio'
@@ -236,7 +236,7 @@
         		 		}
         		 	},
         		 	
-        		 fecha:{
+        		 	fechallegada:{
         		 		validators:{
         		 			notEmpty:{
         		 				message:'Campo fecha es obligatorio'

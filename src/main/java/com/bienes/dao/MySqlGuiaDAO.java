@@ -105,8 +105,7 @@ public class MySqlGuiaDAO implements GuiaDAO {
 			//1
 			cn=MySqlConexion.getConectar();
 			//2
-			String sql="update gestionbienes.`grr-ordendecompra` set proveedor=?, fecha_compra=?, descripcion=?, cantidad=?, precio=? "
-					+ "where codigo=?";
+			String sql="update gestionbienes.`grr-ordendecompra` set proveedor=?, fecha_compra=?, descripcion=?, cantidad=?, precio=? where codigo=?";
 			//3
 			pstm=cn.prepareStatement(sql);
 			//4
