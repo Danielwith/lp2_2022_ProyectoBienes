@@ -3,6 +3,7 @@ package com.bienes.fabrica;
 import com.bienes.interfaces.BienesDAO;
 import com.bienes.interfaces.GuiaDAO;
 import com.bienes.interfaces.LoginDAO;
+import com.bienes.interfaces.OperadorDAO;
 import com.bienes.interfaces.ProveedorDAO;
 
 
@@ -22,6 +23,7 @@ public abstract class DAOFactory {
     public abstract ProveedorDAO getProveedorDAO();
     public abstract GuiaDAO getGuiaDAO();
     public abstract LoginDAO getLoginDAO();
+    public abstract OperadorDAO getOperadorDAO();
    
     public static DAOFactory getDAOFactory(int whichFactory){
         switch(whichFactory){

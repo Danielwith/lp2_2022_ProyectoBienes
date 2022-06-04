@@ -7,14 +7,15 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.bienes.entidad.Operador;
 import com.bienes.entidad.Proveedor;
-import com.bienes.interfaces.ProveedorDAO;
+import com.bienes.interfaces.OperadorDAO;
 import com.bienes.utils.MySqlConexion;
 
-public class MySqlProveedorDAO implements ProveedorDAO {
+public class MySqlOperadorDAO implements OperadorDAO {
 
 	@Override
-	public int savePro(Proveedor bean) {
+	public int saveOpe(Operador bean) {
 		int salida=-1;
 		Connection cn=null;
 		PreparedStatement pstm=null;
@@ -22,14 +23,14 @@ public class MySqlProveedorDAO implements ProveedorDAO {
 			//1
 			cn=MySqlConexion.getConectar();
 			//2
-			String sql="insert into proveedor values(null,?,?,?,?)";
+			String sql="insert into operador values(null,?,?,?,?)";
 			//3
 			pstm=cn.prepareStatement(sql);
 			//4
-			pstm.setString(1, bean.getNom_prove());
-			pstm.setString(2, bean.getDist_prove());
-			pstm.setString(3, bean.getTelf_prove());
-			pstm.setString(4, bean.getEstado_prove());
+			pstm.setString(1, bean.getNom_ope());
+			pstm.setString(2, bean.getDist_ope());
+			pstm.setInt(3, bean.getCel_ope());
+			pstm.setString(4, bean.getEstado_ope());
 			//5
 			salida=pstm.executeUpdate();
 		} catch (SQLException e) {
@@ -46,8 +47,9 @@ public class MySqlProveedorDAO implements ProveedorDAO {
 		return salida;
 	}
 	
+	
 	@Override
-	public int updatePro(Proveedor bean) {
+	public int updateOpe(Operador bean) {
 		int salida=-1;
 		Connection cn=null;
 		PreparedStatement pstm=null;
@@ -55,15 +57,15 @@ public class MySqlProveedorDAO implements ProveedorDAO {
 			//1
 			cn=MySqlConexion.getConectar();
 			//2
-			String sql="update proveedor set nom_prove=?, dist_prove=?, telf_prove=?, estado_prove=? where id_prove=?";
+			String sql="update operador set nom_ope=?, dist_ope=?, cel_ope=?, estado_ope=? where id_ope=?";
 			//3
 			pstm=cn.prepareStatement(sql);
 			//4
-			pstm.setString(1, bean.getNom_prove());
-			pstm.setString(2, bean.getDist_prove());
-			pstm.setString(3, bean.getTelf_prove());
-			pstm.setString(4, bean.getEstado_prove());
-			pstm.setInt(5, bean.getId_prove());
+			pstm.setString(1, bean.getNom_ope());
+			pstm.setString(2, bean.getDist_ope());
+			pstm.setInt(3, bean.getCel_ope());
+			pstm.setString(4, bean.getEstado_ope());
+			pstm.setInt(5, bean.getId_ope());
 			
 			//5
 			salida=pstm.executeUpdate();
@@ -82,7 +84,7 @@ public class MySqlProveedorDAO implements ProveedorDAO {
 	}
 	
 	@Override
-	public int deletePro(int id) {
+	public int deleteOpe(int codi) {
 		int salida=-1;
 		Connection cn=null;
 		PreparedStatement pstm=null;
@@ -90,11 +92,11 @@ public class MySqlProveedorDAO implements ProveedorDAO {
 			//1
 			cn=MySqlConexion.getConectar();
 			//2
-			String sql="delete from proveedor where id_prove=?";
+			String sql="delete from operador where id_ope=?";
 			//3
 			pstm=cn.prepareStatement(sql);
 			//4
-			pstm.setInt(1, id);
+			pstm.setInt(1, codi);
 			//5
 			salida=pstm.executeUpdate();
 		} catch (SQLException e) {
@@ -112,8 +114,8 @@ public class MySqlProveedorDAO implements ProveedorDAO {
 	}
 	
 	@Override
-	public Proveedor findByIdPro(int id) {
-		Proveedor bean=null;
+	public Operador findByIdOpe(int codi) {
+		Operador bean=null;
 		Connection cn=null;
 		PreparedStatement pstm=null;
 		ResultSet rs=null;
@@ -121,24 +123,24 @@ public class MySqlProveedorDAO implements ProveedorDAO {
 			//1.
 			cn=MySqlConexion.getConectar();
 			//2.
-			String sql="select * from proveedor where id_prove=?";
+			String sql="select * from operador where id_ope=?";
 			//3.
 			pstm=cn.prepareStatement(sql);
 			//4.parámetros
-			pstm.setInt(1, id);
+			pstm.setInt(1, codi);
 			//5.
 			rs=pstm.executeQuery();
 			//6.validar si existe registro
 			if(rs.next()) {
 				//7
-				bean=new Proveedor();
+				bean=new Operador();
 				//8
 				
-				bean.setId_prove(rs.getInt(1));
-				bean.setNom_prove(rs.getString(2));
-				bean.setDist_prove(rs.getString(3));
-				bean.setTelf_prove(rs.getString(4));
-				bean.setEstado_prove(rs.getString(5));
+				bean.setId_ope(rs.getInt(1));
+				bean.setNom_ope(rs.getString(2));
+				bean.setDist_ope(rs.getString(3));
+				bean.setCel_ope(rs.getInt(4));
+				bean.setEstado_ope(rs.getString(5));
 				
 			}
 		} catch (SQLException e) {
@@ -157,9 +159,9 @@ public class MySqlProveedorDAO implements ProveedorDAO {
 	}
 	
 	@Override
-	public List<Proveedor> listAll() {
-		List<Proveedor> lista=new ArrayList<Proveedor>();
-		Proveedor bean=null;
+	public List<Operador> listAll() {
+		List<Operador> lista=new ArrayList<Operador>();
+		Operador bean=null;
 		Connection cn=null;
 		PreparedStatement pstm=null;
 		ResultSet rs=null;
@@ -167,7 +169,7 @@ public class MySqlProveedorDAO implements ProveedorDAO {
 			//1.
 			cn=MySqlConexion.getConectar();
 			//2.
-			String sql="select * from proveedor";
+			String sql="select * from operador";
 			//3.
 			pstm=cn.prepareStatement(sql);
 			//4.parámetros
@@ -177,14 +179,14 @@ public class MySqlProveedorDAO implements ProveedorDAO {
 			//6.
 			while(rs.next()) {
 				//7
-				bean=new Proveedor();
+				bean=new Operador();
 				//8
 				
-				bean.setId_prove(rs.getInt(1));
-				bean.setNom_prove(rs.getString(2));
-				bean.setDist_prove(rs.getString(3));
-				bean.setTelf_prove(rs.getString(4));
-				bean.setEstado_prove(rs.getString(5));
+				bean.setId_ope(rs.getInt(1));
+				bean.setNom_ope(rs.getString(2));
+				bean.setDist_ope(rs.getString(3));
+				bean.setCel_ope(rs.getInt(4));
+				bean.setEstado_ope(rs.getString(5));
 				
 				//9
 				lista.add(bean);

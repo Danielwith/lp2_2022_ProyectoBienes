@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
 import com.bienes.dao.MySqlProveedorDAO;
 import com.bienes.entidad.Proveedor;
 import com.bienes.services.ProveedorServices;
