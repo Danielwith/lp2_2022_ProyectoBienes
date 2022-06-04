@@ -224,30 +224,7 @@
     $(document).ready(function(){     
         $('#idRegistrar').bootstrapValidator({
         	 fields:{
-        		     nombreproveedor:{
-        		 		validators:{
-        		 			notEmpty:{
-        		 				message:'Campo proveedor es obligatorio'
-        		 			},
-        		 			regexp:{
-        		 				regexp:/^[a-zA-Z\ñ\Ñ\s\á\é\í\ó\ú\Á\É\Í\Ó\Ú]{4,20}$/,
-        		 				message:'Campo proveedor MIN:4 - MAX:20'
-        		 			}
-        		 		}
-        		 	},
-        		 	
-        		 	fechallegada:{
-        		 		validators:{
-        		 			notEmpty:{
-        		 				message:'Campo fecha es obligatorio'
-        		 			},
-        		 			regexp:{
-        		 				regexp:/^([0-9]{4})-([0-9]{1,2})-([0-9]{1,2})$/,
-        		 				message:'Campo fecha es obligatorio yyyy-mm-dd'
-        		 			}
-        		 			
-        		 		}
-        		 	},
+        		     
         		 	
         		 	descripcion:{
         		 		validators:{
@@ -283,8 +260,32 @@
         		 				message:'Campo precio debe ser numerico'
         		 			}
         		 		}
-        		 	}
+        		 	},
         		 	
+        		 	nombreproveedor:{
+        		 		validators:{
+        		 			notEmpty:{
+        		 				message:'Campo proveedor es obligatorio'
+        		 			},
+        		 			regexp:{
+        		 				regexp:/^[a-zA-Z\ñ\Ñ\s\á\é\í\ó\ú\Á\É\Í\Ó\Ú]{4,20}$/,
+        		 				message:'Campo proveedor MIN:4 - MAX:20'
+        		 			}
+        		 		}
+        		 	},
+        		 	
+        		 	fechallegada:{
+        		 		validators:{
+        		 			notEmpty:{
+        		 				message:'Campo fecha es obligatorio'
+        		 			},
+        		 			regexp:{
+        		 				regexp:/^([0-9]{4})-([0-9]{1,2})-([0-9]{1,2})$/,
+        		 				message:'Campo fecha es obligatorio yyyy-mm-dd'
+        		 			}
+        		 			
+        		 		}
+        		 	}
         	 }
         });   			
     });    
