@@ -77,7 +77,7 @@ public class ServletSunarp extends HttpServlet {
 
 	private void registrarSUNARP(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//variables
-				String cod,descrip,cant,nomprovee,prec,nompro,fechalle;
+				String cod,descrip,cant,prec,nompro,fechalle;
 				//leer controles de la página docente.jsp "trabajar con el atributo name"
 				cod=request.getParameter("codigo");
 				descrip=request.getParameter("descripcion");

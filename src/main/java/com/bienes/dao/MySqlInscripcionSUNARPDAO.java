@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.bienes.entidad.InscripcionSUNARP;
-import com.bienes.interfaces.BienesDAO;
 import com.bienes.interfaces.InscripcionSUNARPDAO;
 import com.bienes.utils.MySqlConexion;
 
@@ -23,16 +22,15 @@ public class MySqlInscripcionSUNARPDAO implements InscripcionSUNARPDAO {
 			//1
 			cn=MySqlConexion.getConectar();
 			//2
-			String sql="insert into bienes values(null,?,?,?,?,?,?)";
+			String sql="insert into inscripcion_sunarp values(null,?,?,?,?,?)";
 			//3
 			pstm=cn.prepareStatement(sql);
 			//4
 			pstm.setString(1, bean.getDescrip_bien());
 			pstm.setInt(2, bean.getCantidad_bien());
-			pstm.setString(3, bean.getNom_provee() );
-			pstm.setDouble(4, bean.getPrecio_bien());
-			pstm.setString(5, bean.getNom_provee());
-			pstm.setDate(6, bean.getFecha_llegada());
+			pstm.setDouble(3, bean.getPrecio_bien());
+			pstm.setString(4, bean.getNom_provee());
+			pstm.setDate(5, bean.getFecha_llegada());
 			
 			//5
 			salida=pstm.executeUpdate();
@@ -59,17 +57,16 @@ public class MySqlInscripcionSUNARPDAO implements InscripcionSUNARPDAO {
 			//1
 			cn=MySqlConexion.getConectar();
 			//2
-			String sql="update inscripcion_sunarp set descrip_bien=?, cantidad_bien=?, precio_bien=?, nom_provee=?, fecha_llegada=? "
-					+ " where codigo_inscri=? ";
+			String sql="update inscripcion_sunarp set descripcion_bien=?, cantidad_bien=?, precio_bien=?, nom_provee=?, fecha_llegada=? where codigo_inscri=?" ;
 			//3
 			pstm=cn.prepareStatement(sql);
 			//4
 			pstm.setString(1, bean.getDescrip_bien());
 			pstm.setInt(2, bean.getCantidad_bien());
-			pstm.setString(3, bean.getNom_provee() );
-			pstm.setDouble(4, bean.getPrecio_bien());
-			pstm.setString(5, bean.getNom_provee());
-			pstm.setDate(6, bean.getFecha_llegada());
+			pstm.setDouble(3, bean.getPrecio_bien());
+			pstm.setString(4, bean.getNom_provee());
+			pstm.setDate(5, bean.getFecha_llegada());
+			pstm.setInt(6, bean.getCodigo_inscri());
 			//5
 			salida=pstm.executeUpdate();
 		} catch (SQLException e) {
