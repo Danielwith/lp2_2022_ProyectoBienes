@@ -130,7 +130,7 @@
 		        <thead>
 		            <tr>
 		                <th>CÓDIGO</th>
-		                <th>NOMBRE PROVEEDOR</th>
+		                <th>NOMBRE EMPRESA</th>
 		                <th>DISTRITO</th>
 		                <th>TELÉFONO</th>
 		                <th>ESTADO</th>
