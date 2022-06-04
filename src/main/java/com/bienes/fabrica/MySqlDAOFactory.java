@@ -1,6 +1,7 @@
 package com.bienes.fabrica;
 import com.bienes.dao.*;
 import com.bienes.interfaces.*;
+
 import com.bienes.dao.MySqlBienesDAO;
 
 import com.bienes.dao.MySqlInscripcionSUNARPDAO;
@@ -15,6 +16,7 @@ import com.bienes.interfaces.InscripcionSUNARPDAO;
 
 import com.bienes.interfaces.GuiaDAO;
 import com.bienes.interfaces.ProveedorDAO;
+import com.bienes.interfaces.OperadorDAO;
 
 
 public class MySqlDAOFactory extends DAOFactory {
@@ -36,14 +38,22 @@ public class MySqlDAOFactory extends DAOFactory {
 	
 
 	@Override
-
 	public LoginDAO getLoginDAO() {
 		return new MySqlLoginDAO();
 	}
 	
+	@Override
 	public ProveedorDAO getProveedorDAO() {
-		// TODO Auto-generated method stub
 		return new MySqlProveedorDAO();
 	}
+
+
+
+	
+	@Override
+	public OperadorDAO getOperadorDAO() {
+		return new MySqlOperadorDAO();
+	}
+	
 
 }

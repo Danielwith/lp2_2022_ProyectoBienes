@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Proveedor</title>
+<title>Operador</title>
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 <link href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css" rel="stylesheet">´
@@ -45,7 +45,7 @@
 	<jsp:include page="partialMenu.jsp"></jsp:include>
 	<!-- Añadir class .home  -->
 	  <div class="container">
-		<h1 class="text-center mt-5">Listado de Proveedores</h1>
+		<h1 class="text-center mt-5">Listado de Operadores</h1>
 			<c:if test="${requestScope.MENSAJE!=null}">
 				<div class="alert alert-warning alert-dismissible fade show" role="alert">
 				  <strong>MENSAJE : </strong> ${requestScope.MENSAJE} 
@@ -55,7 +55,7 @@
 
 		<!-- Button trigger modal -->
 		<button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-		  Nuevo Proveedor
+		  Nuevo Operador
 		</button>
 				
 		<!-- Modal -->
@@ -63,35 +63,35 @@
 		  <div class="modal-dialog modal-dialog-centered">
 		    <div class="modal-content">
 		      <div class="modal-header">
-		        <h5 class="modal-title" id="staticBackdropLabel">PROVEEDOR</h5>
+		        <h5 class="modal-title" id="staticBackdropLabel">OPERADOR</h5>
 		      </div>
 		      <div class="modal-body">		        
-		        <form id="idRegistrar" method="post" action="ServletProveedor?tipo=REGISTRAR">
+		        <form id="idRegistrar" method="post" action="ServletOperador?tipo=REGISTRAR">
 		        
 			 
 					  <div class="form-group">
 					    <label for="exampleInputEmail1" class="form-label">ID</label>
-					    <input type="text" class="form-control" name="idpro" id="idProveedor" readonly value="0">
+					    <input type="text" class="form-control" name="idope" id="idOperador" readonly value="0">
 					  </div>
 					  
 					  <div class="form-group">
-					    <label for="exampleInputPassword1" class="form-label">Nombre Proveedor</label>
-					    <input type="text" class="form-control" name="nombreProveedor" id="idNombreProveedor">
+					    <label for="exampleInputPassword1" class="form-label">Nombre Operador</label>
+					    <input type="text" class="form-control" name="nombreOperador" id="idNombreOperador">
 					  </div>		
 					  
 					  <div class="form-group">
 					    <label for="exampleInputPassword1" class="form-label">Distrito</label>
-					    <input type="text" class="form-control" name="distritoProveedor" id="idDistritoProveedor">
+					    <input type="text" class="form-control" name="distritoOperador" id="idDistritoOperador">
 					  </div>
 					  
 					  <div class="form-group">
-					    <label for="exampleInputPassword1" class="form-label">Teléfono</label>
-					    <input type="text" class="form-control" name="telefonoProveedor" id="idTelefonoProveedor">
+					    <label for="exampleInputPassword1" class="form-label">Celular</label>
+					    <input type="text" class="form-control" name="celularOperador" id="idCelularOperador">
 					  </div>
 					  
 					  <div class="form-group">
 					    <label for="exampleInputPassword1" class="form-label">Estado</label>
-					    <input type="text" class="form-control" name="estadoProveedor" id="idEstadoProveedor">
+					    <input type="text" class="form-control" name="estadoOperador" id="idEstadoOperador">
 					  </div>		  
 				  				  				  
 				  <div class="modal-footer">
@@ -112,7 +112,7 @@
 		        <h5 class="modal-title" id="staticBackdropLabel">Sistema</h5>
 		      </div>
 		      <div class="modal-body">
-		        <form id="idRegistrar" method="post" action="ServletProveedor?tipo=ELIMINAR">
+		        <form id="idRegistrar" method="post" action="ServletOperador?tipo=ELIMINAR">
 				    <input type="hidden" class="form-control" name="codigoEliminar" id="codigoEliminar">
 				  <h4>¿Desea eliminar?</h4>
 				  <div class="modal-footer">
@@ -130,22 +130,22 @@
 		        <thead>
 		            <tr>
 		                <th>CÓDIGO</th>
-		                <th>PROVEEDOR</th>
+		                <th>NOMBRE OPERADOR</th>
 		                <th>DISTRITO</th>
-		                <th>TELÉFONO</th>
+		                <th>CELULAR</th>
 		                <th>ESTADO</th>
 		                <th></th>
 		                <th></th>
 		            </tr>
 		        </thead>
 		        <tbody>
-		        		<c:forEach items="${requestScope.listarProveedor}" var="row">
+		        		<c:forEach items="${requestScope.listarOperador}" var="row">
 				            <tr>
-				                <td>${row.id_prove}</td>
-				                <td>${row.nom_prove}</td>
-				                <td>${row.dist_prove}</td>
-				                <td>${row.telf_prove}</td>
-				                <td>${row.estado_prove}</td>
+				                <td>${row.id_ope}</td>
+				                <td>${row.nom_ope}</td>
+				                <td>${row.dist_ope}</td>
+				                <td>${row.cel_ope}</td>
+				                <td>${row.estado_ope}</td>
 				                <td><button type="button" class="btn btn-success" 
 				                			data-bs-toggle="modal" data-bs-target="#staticBackdrop">Editar</button></td>
 				                <td><button type="button" class="btn btn-danger" 
@@ -183,33 +183,33 @@
 	//aisgnar evento click a todos los botones con nombre de clase "btn-danger"
 	$(document).on("click",".btn-danger",function(){
 		//variable
-		let id;
+		let codi;
 		//obtener el código del docente según el botón eliminar que se a pulsado
-		id=$(this).parents("tr").find("td")[0].innerHTML;
+		codi=$(this).parents("tr").find("td")[0].innerHTML;
 		//asignar a la caja con id "codigoEliminar" el valor de la variable "cod"
-		$("#codigoEliminar").val(id);
+		$("#codigoEliminar").val(codi);
 		
 	})
 	//asignar evento click a todos los botones con nombre de clase "btn-success"
 	$(document).on("click",".btn-success",function(){
 		//variables
-		let id,nomPro,distPro,telfPro,estPro;
+		let codi,nomOpe,distOpe,celOpe,estOpe;
 		//obtener los datos de todas las columnas según el botón editar que se a pulsado
-		id=$(this).parents("tr").find("td")[0].innerHTML;
-		nomPro=$(this).parents("tr").find("td")[1].innerHTML;
-		distPro=$(this).parents("tr").find("td")[2].innerHTML;
-		telfPro=$(this).parents("tr").find("td")[3].innerHTML;
-		estPro=$(this).parents("tr").find("td")[4].innerHTML;
+		codi=$(this).parents("tr").find("td")[0].innerHTML;
+		nomOpe=$(this).parents("tr").find("td")[1].innerHTML;
+		distOpe=$(this).parents("tr").find("td")[2].innerHTML;
+		celOpe=$(this).parents("tr").find("td")[3].innerHTML;
+		estOpe=$(this).parents("tr").find("td")[4].innerHTML;
 		
 		
-		$.get("ServletProveedorJSON?idpro="+id,function(response){         // SSDFDSFSDFDSFSDFSDFSDFSDFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+		$.get("ServletOperadorJSON?idope="+codi,function(response){         // SSDFDSFSDFDSFSDFSDFSDFSDFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
 			//console.log(response);
 			//asignar a los controles las claves del parámetro response
-			$("#idProveedor").val(id);
-			$("#idNombreProveedor").val(response.nom_prove);
-			$("#idDistritoProveedor").val(response.dist_prove);
-			$("#idTelefonoProveedor").val(response.telf_prove);
-			$("#idEstadoProveedor").val(response.estado_prove);
+			$("#idOperador").val(codi);
+			$("#idNombreOperador").val(response.nom_ope);
+			$("#idDistritoOperador").val(response.dist_ope);
+			$("#idCelularOperador").val(response.cel_ope);
+			$("#idEstadoOperador").val(response.estado_ope);
 			
 		})			
 	})							
@@ -220,7 +220,7 @@
     $(document).ready(function(){     
         $('#idRegistrar').bootstrapValidator({      
         	 fields:{
-        		  nombreProveedor:{
+        		  nombreOperador:{
         		 		validators:{
         		 			notEmpty:{
         		 				message:'Campo Nombre es obligatorio'
@@ -231,7 +231,7 @@
         		 			}
         		 		}
         		 	},
-        		 	distritoProveedor:{
+        		 	distritoOperador:{       		 		
         		 			validators:{
             		 			notEmpty:{
             		 				message:'Campo Distrito es obligatorio'
@@ -240,9 +240,10 @@
             		 				regexp:/^[a-zA-Z\ñ\Ñ\s\á\é\í\ó\ú\Á\É\Í\Ó\Ú]{4,20}$/,
             		 				message:'Solo letras MIN:3 - MAX:20'
             		 			}
-        		 		 }
+        		 		  }        		 		
         		 	},
-        		 	estadoProveedor:{
+        		 	estadoOperador:{
+        		 		
         		 			validators:{
             		 			notEmpty:{
             		 				message:'Campo estado es obligatorio'
@@ -251,9 +252,20 @@
             		 				regexp:/^[a-zA-Z\ñ\Ñ\s\á\é\í\ó\ú\Á\É\Í\Ó\Ú]{4,20}$/,
             		 				message:'Solo letras MIN:3 - MAX:20'
             		 			}
-        		 		   }	 	       		 	       		 	      
-        	 		}
-        	 }	
+        		 		   }
+        		 	 },
+        	 		 celularOperador:{
+        		 		validators:{
+        		 			notEmpty:{
+        		 				message:'Campo celular es obligatorio'
+        		 			},
+        		 			regexp:{
+        		 				regexp:/^\d+$/,
+        		 				message:'Este campo debe ser numerico'
+        		 			}
+        		 		}
+        		 	}	      		 	             	 
+        		}
         });   			
     });    
 </script> 
