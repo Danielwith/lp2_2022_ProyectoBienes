@@ -1,3 +1,9 @@
+<%
+	if(request.getSession().getAttribute("LISTA")==null)
+		response.sendRedirect("login.jsp");
+%>
+
+
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
@@ -44,7 +50,7 @@
 <body>
 	<jsp:include page="partialMenu.jsp"></jsp:include>
 	<!-- Añadir class .home  -->
-	  <div class="container">
+	  <div class="container home">
 		<h1 class="text-center mt-5">Listado de Proveedores</h1>
 			<c:if test="${requestScope.MENSAJE!=null}">
 				<div class="alert alert-warning alert-dismissible fade show" role="alert">
