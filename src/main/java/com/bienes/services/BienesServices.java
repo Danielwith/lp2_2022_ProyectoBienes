@@ -13,6 +13,8 @@ public class BienesServices {
 		//PASO 2: definir dao a utilizar
 		private BienesDAO objBienes=fabrica.getBienesDAO();
 		
+
+		
 		//métodos de servicio
 		public int registrar(Bienes bean) {
 			return objBienes.save(bean);
@@ -29,6 +31,9 @@ public class BienesServices {
 		public List<Bienes> listarTodos(){
 			return objBienes.listAll();
 		}
-		
+		public List<Bienes> listarBienesporCodigodeComptra(int cod) {
+			return objBienes.listarBienesporCodigodeComptra(cod);
+		}
+
 		
 }

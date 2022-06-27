@@ -11,5 +11,6 @@ public interface BienesDAO {
 	public int delete(int cod);
 	public Bienes findById(int cod);
 	public List<Bienes> listAll();
+	public List<Bienes> listarBienesporCodigodeComptra(int cod);
 
 }

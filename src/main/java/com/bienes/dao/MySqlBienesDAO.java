@@ -207,4 +207,45 @@ public class MySqlBienesDAO implements BienesDAO {
 		return lista;
 	}
 
+	@Override
+	public List<Bienes> listarBienesporCodigodeComptra(int cod) {
+		List<Bienes> lista=new ArrayList<Bienes>();
+		Connection cn=null;
+		PreparedStatement pstm=null;
+		ResultSet rs=null;
+		try {
+			cn= MySqlConexion.getConectar();
+			String sql="select b.codigo_bien,b.descrip_bien,b.cantidad_bien,b.nom_provee,b.fecha_llegada,b.codigo_ordencompra from bienes b join `grr-ordendecompra` a"
+					+ "	on b.codigo_ordencompra = a.codigo where  a.codigo=?";
+			pstm=cn.prepareStatement(sql);
+			pstm.setInt(1, cod);
+			rs=pstm.executeQuery();
+			while(rs.next()) {
+				Bienes Bien=new Bienes();
+				Bien.setCodigo_bien(rs.getInt(1));
+				Bien.setDescrip_bien(rs.getString(2));
+				Bien.setCantidad_bien(rs.getInt(3));
+				Bien.setNom_provee(rs.getString(4));
+				Bien.setFecha_llegada(rs.getDate(5));
+				Bien.setCodigoOrdendeCompra(rs.getInt(6));		
+				
+				lista.add(Bien);
+							
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		finally {
+			try {
+				if(rs!=null) rs.close();
+				if(pstm!=null) pstm.close();
+				if(cn!=null) cn.close();
+			} catch (SQLException e2) {
+				e2.printStackTrace();
+			}
+		}
+		
+		return lista;
+	}
+
 }
