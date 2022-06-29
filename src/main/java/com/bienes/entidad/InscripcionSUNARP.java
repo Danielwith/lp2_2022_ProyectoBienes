@@ -11,8 +11,6 @@ public class InscripcionSUNARP {
 		public String nom_provee;
 		public Date fecha_llegada;
 		
-		
-		
 		public int getCodigo_inscri() {
 			return codigo_inscri;
 		}

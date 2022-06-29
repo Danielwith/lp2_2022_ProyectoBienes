@@ -104,7 +104,7 @@ public class ServletBienes extends HttpServlet {
 						listarBienes(request, response);
 					}
 					else {
-						request.setAttribute("MENSAJE", "Error en el registro del bien");
+						request.setAttribute("MENSAJE", "La Orden de Compra y sus datos no estan registrados");
 						listarBienes(request, response);
 					}
 				}
